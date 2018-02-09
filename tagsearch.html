@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<title>Sai Rythms</title>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content=" Responsive web templates" />
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/pagination.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+    <script src="js/fuse.js"></script>
+    <script src="js/pagination.min.js"></script>
+    <script src="js/tagsearch.js"> </script>
+    <script type="text/javascript" src="js/waitforimages.js"></script>
+
+    <script>
+        $(function () {
+            $("#headerhtml").load("_header.html", function () {
+                $('#list-header').waitForImages().done(function () {
+                    ResetHeaderPadding();
+                });
+            });
+            $("#footerhtml").load("_footer.html");
+            $(window).bind('resize', function (e) {
+                ResetHeaderPadding();
+            });
+
+            function ResetHeaderPadding() {
+                var height = $('#list-header-menu').position();
+                var outer = $('#list-header-menu').outerHeight(true);
+                $('#glossarysearch').css('padding-top', height.top + outer + 10);
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="headerhtml"></div>
+    <div id="glossarysearch">
+        <form role="form" action="tagsearch.html">
+            <div style="padding:15px;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="page-title">Songs with Tags: </span>
+                        <span class="glyphicon glyphicon-circle-arrow-left" style="font:black; color:#234b8c; font-size:23px; float:right ;padding-right: 20px;"
+                            onClick="history.go(-1);return true;" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input id="glossaryterm" style="margin-left:10px;" type="text" name="term">
+                        <button type="submit" class="btn btn-info">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="page-body" id="wrapper" style="padding-bottom:60px;margin-top:-15px;">
+        <section>
+            <div class="data-container"></div>
+            <div style="padding-left:15px;" id="pagination-demo2"></div>
+        </section>
+    </div>
+    <div id="footerhtml"></div>
+</body>
+
+</html>
+
+<script>
+    $(function () {
+        $(document).on('click', '.FavButton', function () {
+            $(this).html('Favorite added');
+            $(this).prop("disabled", true);
+            $("#FavLink").css("font-weight", "bold");
+            setTimeout(function () {
+                $("#FavLink").css("text-decoration", "none");
+                $("#FavLink").css("font-weight", "normal");
+            }, 3000);
+
+        });
+    });
+
+    function saveComment(id, title, deity) {
+
+        if (localStorage.getItem('Fav') === null) {
+            var favi = [{ Id: id, Label: title, Deity: deity, Comment: "" }];
+            localStorage.setItem('Fav', JSON.stringify(favi));
+        }
+        else {
+            var newBhajan = 0;
+            var FavJson = JSON.parse(localStorage.getItem('Fav'));
+
+            for (var i in FavJson) {
+                if (FavJson[i].Id == id) {
+                    newBhajan = 1
+                }
+            }
+            if (newBhajan != 1) {
+                newBhajanData = { Id: id, Label: title, Deity: deity, Comment: "" }
+                FavJson.push(newBhajanData);
+                localStorage.setItem('Fav', JSON.stringify(FavJson));
+            }
+        }
+    }
+</script>

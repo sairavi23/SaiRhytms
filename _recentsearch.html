@@ -1,0 +1,48 @@
+
+<div class="btn btn-link" id="showhideRecentSearch" >View Recent Search Results</div>
+<div id="RecentSearch"></div>
+
+<script>
+        $(function () 
+        
+        {
+            
+            $("#showhideRecentSearch").click(function(){
+                if ($("#showhideRecentSearch").html().toUpperCase()== "VIEW RECENT SEARCH RESULTS")
+                {
+                    $("#showhideRecentSearch").html('<span style="color:red">Close Recent Search Results <span class="glyphicon glyphicon-remove-sign" /></span>');
+                    $("#RecentSearch").html(BuildRecentSearchHtml());
+                }
+                else
+                {
+                    $("#showhideRecentSearch").html("View Recent Search Results");
+                    $("#RecentSearch").html("");
+                }
+            });
+            
+            
+            
+            function BuildRecentSearchHtml()
+            {
+                var searchHtml = "";
+                searchHtml = searchHtml + '<ul data-role="listview" class="list-group">';
+                if (localStorage.getItem('RecentSearch') === null) {
+                    searchHtml = '<li class="list-group-item"> No Recent Searches</li>'
+                }
+                else {
+                    var recentJson = JSON.parse(localStorage.getItem('RecentSearch'));
+                    for (var i in recentJson) {
+                        if (recentJson[i].Name != "")
+                        {
+                            searchHtml = searchHtml + '<li class="list-group-item"> <a href='+ recentJson[i].Link +'>'+ recentJson[i].Name +'</a></li>';
+                        }
+                    }
+                }
+                searchHtml = searchHtml + "</ul>";
+                return searchHtml;
+            }
+    
+        });
+    
+    
+        </script>

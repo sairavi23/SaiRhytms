@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<title>Sai Rythms</title>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style>
+        #Abhayahastha-holder
+        {
+            background-image: url(img/ssio-logo-small.png), url(img/ssio-logo-small.png);
+            background-position: right center, left center;
+            background-repeat: no-repeat, no-repeat;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#remove").hide();
+            $("select").change(function () {
+                $("#remove").show();
+            });
+            $("input").change(function () {
+                $("#remove").show();
+            });
+            $("#indexFavorite").click(function () {
+                window.location.href = "favourite.html?deity=";
+            });
+            $("#indexSearch").click(function () {
+                window.location.href = "list.html?lyrics=&deity=&complexity=&tempo=&raga=&media=&beat=&language=&page=1";
+            });
+            $("#indexContact").click(function () {
+                window.location.href = "mailto:bhajanapp@gmail.com?subject= Feedback on Bhajan App &body=Jai Sairam";
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="main-body">
+        <div id="Abhayahastha-holder">
+                <img id="Abhayahastha" src="img/Abhayahastha-High-Res1.jpeg" />
+        </div>
+        <div class="heading">Sai Rhythms</div>
+        <div style="padding-bottom:60px;">
+            <table style="margin: 0 auto;">
+                <tr id="indexSearch">
+                    <td>
+                        <div class="col-md-12 ser-grid"=>
+                            <div class="ser-bottom-grd">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="indexFunctionName">Bhajan Search</div>
+                    </td>
+                </tr>
+                <tr id="indexFavorite">
+                    <td>
+                        <div class="col-md-12 ser-grid" id="favor">
+                            <div class="ser-bottom-grd">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="indexFunctionName">Bhajan Favorite </div>
+                    </td>
+                </tr>
+                <tr id="indexContact">
+                    <td>
+                        <div class="col-md-12 ser-grid" id="deity">
+                            <div class="ser-bottom-grd">
+                                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="indexFunctionName">Contact Us</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+<footer>
+    <p> &copy; Zone 1, Region 3, SSIO - USA</p>
+</footer>
+
+</html>

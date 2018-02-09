@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/jqcloud.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jqcloud.js"></script>
+    <script type="text/javascript" src="js/fuse.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            tagCloud();
+            function tagCloud() {
+                var fuse, Obj, result, newresult, newobj, tosearch;
+                var glossaryUrl = "tagsearch.html?term=";
+                var tagresult = [];
+                var data = $.ajax({
+                    url: "json/all_devotional_song_glossary.json",
+                    success: function (newresult) {
+                        Obj = JSON.parse(newresult);
+                        var recentJson = JSON.parse(localStorage.getItem('RecentSearch'));
+                        var options = {
+                            keys: ['term']
+                        }
+                        var counter = 0;
+                        for (var i in recentJson) {
+                            if (recentJson[i].Lyrics != "") {
+                                var lyricsArray = recentJson[i].Lyrics.split(" ");
+                                for (var i = 0, len = lyricsArray.length; i < len; i++) {
+                                    fuse = new Fuse(Obj, options);
+                                    result = fuse.search(lyricsArray[i]);
+                                    if (result.length > 0) {
+                                        var srchText = String(result[0].term);
+                                        var firstresult = { text: srchText, weight: 2, url: glossaryUrl + srchText };
+                                        tagresult.push(firstresult);
+                                    }
+                                }
+                            }
+                            if (recentJson[i].Deity != "") {
+                                fuse = new Fuse(Obj, options);
+                                result = fuse.search(recentJson[i].Deity);
+                                if (result.length > 0) {
+                                    var srchText = String(result[0].term);
+                                    var firstresult = { text: srchText, weight: 3, url: glossaryUrl + srchText };
+                                    tagresult.push(firstresult);
+                                }
+                            }
+                        }
+                        for (k = 0; k < 5; k++) {
+                            var randResult = Obj[Math.floor(Math.random() * Obj.length)];
+                            var firstresult = { text: randResult.term, weight: 1, url: glossaryUrl + randResult.term };
+                            tagresult.push(firstresult);
+                        }
+
+                        var newtagresult = GetUniquetextCategory(tagresult);
+                        $("#tagContainer").jQCloud(newtagresult, {
+                            autoResize: true,
+                            colors: ["#bd0026", "#f410ed", "#fed976", "#1c54a9", "#feb24c", "#e31a1c", "#0e55e4", "#800026", "#fc4e2a", "#fd8d3c"],
+                            fontSize: {
+                                from: 0.09, to: 0.08
+                            }
+                        });
+
+                    },
+                    error: function (data) { alert("testingfailed"); }
+                });
+            }
+
+            function GetUniquetextCategory(Data) {
+                var UniqueNames = [];
+                var UniqueArray = [];
+                Data.forEach(function (value) {
+                    if (UniqueNames.indexOf(value.text) === -1) {
+                        UniqueNames.push(value.text);
+                        UniqueArray.push(value);
+                    }
+                });
+                return UniqueArray;
+            }
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="tagContainer" style="height: 400px; border: 1px solid #ccc;"></div>
+</body>
+
+</script>
+
+</html>

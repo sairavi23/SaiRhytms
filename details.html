@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<title>Sai Rythms</title>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="js/soundsdk.js"></script>
+    <script src="js/soundapi.js"></script>
+    <script src="js/tagdetail.js"> </script>
+    <script src="js/details.js"> </script>
+    <script type="text/javascript" src="js/waitforimages.js"></script>
+    <script>
+        $(function () {
+            $("#headerhtml").load("_header.html", function () {
+                $('#list-header').waitForImages().done(function () {
+                    ResetHeaderPadding();
+                });
+            });
+            $("#tagcloudhtml").load("_tagcloud.html");
+            $("#footerhtml").load("_footer.html");
+            $(window).bind('resize', function (e) {
+                ResetHeaderPadding();
+            });
+
+            function ResetHeaderPadding() {
+                var height = $('#list-header-menu').position();
+                var outer = $('#list-header-menu').outerHeight(true);
+                $('#detailheader').css('padding-top', height.top + outer + 10);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="headerhtml"></div>
+    <div id="detailheader">
+        <span id="favourite">
+            <span class="btn btn-link" id="makefav">Favorite +</span>
+        </span>
+        <span class="glyphicon glyphicon-circle-arrow-left" style="font:black; color:#234b8c; font-size:23px; float:right ;padding-right: 20px;"
+            onClick="history.go(-1);return true;" />
+    </div>
+    <div id="detailhtml" class="page-body" style="margin-top:-10px;">
+        <div data-role="main" class="ui-content" id="result"> </div>
+        <div id="audioall" style="text-align:center; padding-left:10px;">
+            <div id="audiotag">
+                <audio id="audioPlayer" preload="true"></audio>
+                <div id="audioplayer">
+                    <button id="pButton" class="play" onclick="play()"></button>
+                    <div id="timeline">
+                        <div id="playhead"></div>
+                    </div>
+                    <p>
+                        <div id="songduration" style="float:right"></div>
+                        <div id="songcurrent" style="float:left"> </div>
+                    </p>
+                </div>
+            </div>
+            <div id="soundplayer" height="50px"> </div>
+            <div id="noaudio" class="alert alert-warning" role="alert"> </div>
+            <div id="nointernet" class="alert alert-warning" role="alert"> </div>
+            <div id="audioissue" class="alert alert-warning" role="alert" style="display:none;"></div>
+        </div>
+        <div style="padding:10px;">
+            <form class="form-horizontal" role="form">
+                <label style="font-weight:bold; color:#0088cc"> Notes for your reference: </label>
+                <span role="alert" id="msg"></span>
+                <button type="button" id="post" class="btn btn-info" style="float:right; height: 30px; font-size:11px;background-color:#234b8c;border-color:#234b8c;">
+                    Save
+                </button>
+                <textarea rows="5" style="height: 150px;" class="form-control" id="comment" placeholder="Sairam, Enter your scale or any other comments related to this song"></textarea>
+            </form>
+        </div>
+    </div>
+    <div id="tagdetailhtml" style="padding-bottom:60px;"></div>
+    <div id="footerhtml"></div>
+    <script src="js/audioset.js"> </script>
+</body>
+
+</html>

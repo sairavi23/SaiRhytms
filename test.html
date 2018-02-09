@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/jqcloud.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jqcloud.js"></script>
+    <script type="text/javascript" src="js/fuse.js"></script>
+    <script type="text/javascript" src="js/waitforimages.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#headerhtml").load("_header.html", function () {
+                $('#list-header').waitForImages().done(function () {
+                    ResetHeaderPadding() ;
+                });
+            });
+            $("#searchhtml").load("_recentsearch.html");
+            $("#footerhtml").load("_footer.html");
+
+            $(window).bind('resize', function (e) {
+                ResetHeaderPadding();
+            });
+
+            function ResetHeaderPadding() {
+                var height = $('#list-header-menu').position();
+                var outer = $('#list-header-menu').outerHeight(true);
+                $('#searchhtml').css('padding-top', height.top + outer);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="headerhtml"></div>
+    <div id="searchhtml"></div>
+    <div id="footerhtml"></div>
+</body>
+
+<script>
+    $(document).ready(function () {
+
+    });
+
+
+
+</script>
+
+</html>

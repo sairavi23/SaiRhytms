@@ -1,0 +1,100 @@
+<!--
+    Jai Bolo Bhagawan Sri Sathya Sai Baba Ji Ki Jai
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Sai Bhajan App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/app.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script src="js/favourite.js"> </script>  
+<script type="text/javascript" src="js/waitforimages.js"></script>
+
+<script>
+    $(function () {
+        $("#headerhtml").load("_header.html", function () {
+            $('#list-header').waitForImages().done(function () {
+                ResetHeaderPadding();
+            });
+        });
+        $("#footerhtml").load("_footer.html");
+        $(window).bind('resize', function (e) {
+            ResetHeaderPadding();
+        });
+
+        function ResetHeaderPadding() {
+            var height = $('#list-header-menu').position();
+            var outer = $('#list-header-menu').outerHeight(true);
+            $('#favouriteForm').css('padding-top', height.top + outer + 10);
+        }
+    });
+</script>
+
+<style>
+   li {
+       padding-left: 23px;
+       padding-right: 23px;
+       padding-bottom: 10px;
+       text-align: justify;
+       text-justify: inter-word;
+   }
+   
+ .ser-bottom-grd{
+     background-color:rgb(151,207,230);
+     border-color: rgb(151,207,230);
+ }
+
+ body, html {
+height:100%;
+padding:0;
+margin:0;
+}
+
+.titlename{
+    font-style: italic;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 23px;
+    color: rgb(75,80,82)
+}
+</style>
+
+</head>
+<body>
+		<!--header-->		
+		<div id=headerhtml> </div>
+
+        <!--Main Content-->	
+        <div id="favouriteForm" style="padding-top:120px;">
+            <form role="form" action="favourite.html">
+                    <span class="page-title" style="padding-left:15px;padding-right:5px;">Favorites </span>
+                    <select name="deity" id="deity">
+                            <option value="" selected="">All: Select Deity</option>
+                            <option value="ganesha">Ganesha</option>
+                            <option value="guru">Guru</option>
+                            <option value="devi">Devi</option>
+                            <option value="krishna">Krishna</option>
+                            <option value="narayana">Narayana</option>
+                            <option value="rama">Rama</option>
+                            <option value="sai">Sai</option>
+                            <option value="sarva dharma">Sarva Dharma</option>
+                            <option value="shiva">Shiva</option>
+                            <option value="anjaneya">Anjaneya</option>
+                            <option value="ayyappa">Ayyappa</option>
+                            <option value="subramanya">Subramanya</option>
+                        </select>
+                        <button class="btn btn-info">
+                                Filter
+                        </button>
+            </form>
+        </div>
+        <div style="padding-bottom:60px;" data-role="main" class="ui-content" id= "result">
+        </div>
+        
+        <!--Footer-->		
+        <div id=footerhtml> </div>
+        
+</body>
+</html>
