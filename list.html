@@ -9,12 +9,12 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <link rel="stylesheet" type="text/css" href="css/pagination.css">
+    <script type="text/javascript" src="js/custom.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script src="js/pagination.min.js"></script>
+    <!--<script src="js/pagination.min.js"></script> -->
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script src="js/fuse.js"></script>
-    
-    <script src="js/list.js"> </script>
+    <!--<script src="js/list.js"> </script> -->
     <script type="text/javascript" src="js/waitforimages.js"></script>
 
     <script>
@@ -28,6 +28,10 @@
             $("#recentsearchhtml").load("_recentsearch.html");
             $("#tagcloudhtml").load("_tagcloud.html");
             $("#footerhtml").load("_footer.html");
+
+            loadScript("js/pagination.min.js", function(){
+                loadjscssfile("js/list.js", "js")
+            });
 
             $(window).bind('resize', function (e) {
                 ResetHeaderPadding();
@@ -50,7 +54,7 @@
     <div id="recentsearchhtml"></div>
     <div class="page-body" style="margin-top:-15px;">
         <section>
-            <div class="data-container"></div>
+            <div class="data-container"><span style="padding-left: 15px;color:#04223e">Loading pls wait...</span></div>
             <div style="padding-left:15px;" class="pagination-demo2"></div>
         </section>
     </div>
