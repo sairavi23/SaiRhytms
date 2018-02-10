@@ -23,8 +23,6 @@ $(function () {
         var beat = getQueryString("beat");
         var language = getQueryString("language");
 
-        alert(lyrics);
-
         var searchname = GetNamefromQueryString(lyrics, deity, complexity, tempo, raga, media, beat,language);
         SaveRecentSearch(location.search, searchname, lyrics, deity);
         

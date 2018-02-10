@@ -14,7 +14,6 @@ $(function () {
             url: "json/all_devotional_song_glossary.json",
             success: function (newresult) {
                 result = JSON.parse(newresult);
-                console.log(result.length);
                 if (term != "") {
                     result = result.filter(function (item) {
                         if (item.term.replace(/(\r\n|\n|\r)/gm, "").toLowerCase().includes(term)) {
@@ -22,9 +21,6 @@ $(function () {
                         }
                     });
                 };
-
-                console.log(result.length);
-
                 result.sort(function (a, b) {
                     if (a.term < b.term)
                         return -1;
@@ -44,7 +40,6 @@ $(function () {
                         }
                     },
                     callback: function(response, pagination) {
-                        window.console && console.log(22, response, pagination);
                         var listHTML = '<br> <ul id="songlist" data-role="listview" class="list-group" style="padding-left:15px; padding-right:15px;">';
                         $.each(response, function (index, pageresult) {
                             var link = "tagsearch.html?term=" + pageresult.term;   

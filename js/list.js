@@ -44,7 +44,6 @@ $(function () {
                 if (lyrics != "") {
                     fuse = new Fuse(Obj, options);
                     result = fuse.search(lyrics);
-                    console.log(result);
                 }
                 else {
                     result = Obj;
@@ -136,7 +135,7 @@ $(function () {
                         }
                     },
                     callback: function (response, pagination) {
-                        window.console && console.log(22, response, pagination);
+                        
                         var listHTML = '<br> <ul id="songlist" data-role="listview" class="list-group" style="padding-left:15px; padding-right:15px;">';
                         listHTML += '<span class="page-title">Search Results:</span>';
                         $.each(response, function (index, pageresult) {

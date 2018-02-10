@@ -46,8 +46,6 @@ $(function () {
             var FavJson = JSON.parse(localStorage.getItem('Fav'));
 
             for (var i in FavJson) {
-                console.log(i + "=" + FavJson[i]);
-                console.log(FavJson[i]);
                 if (FavJson[i].Id == id) {
                     FavJson[i].Comment = document.getElementById("comment").value;
                     newBhajan = 1
@@ -112,7 +110,6 @@ $(function () {
                         listNode.html(listHTML);
                         setAudioControl(data[i].audio_link);
                         var songglossary = data[i].songglossary;
-                        console.log(songglossary);
                         TagforDetailsPage(songglossary);
                         break;
                     }
