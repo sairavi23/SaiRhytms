@@ -9,8 +9,10 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <link rel="stylesheet" type="text/css" href="css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="css/jqcloud.css">
     <script type="text/javascript" src="js/custom.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jqcloud.js"></script>
     <!--<script src="js/pagination.min.js"></script> -->
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script src="js/fuse.js"></script>
@@ -26,9 +28,8 @@
             });
             $("#searchhtml").load("_search.html");
             $("#recentsearchhtml").load("_recentsearch.html");
-            $("#tagcloudhtml").load("_tagcloud.html");
             $("#footerhtml").load("_footer.html");
-
+            $("#tagcloudhtml").load("_tagcloud.html");
             loadScript("js/pagination.min.js", function(){
                 loadjscssfile("js/list.js", "js")
             });
