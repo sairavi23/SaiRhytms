@@ -20,34 +20,37 @@
                     url: "json/all_devotional_song_glossary.json",
                     success: function (newresult) {
                         Obj = JSON.parse(newresult);
-                        var recentJson = JSON.parse(localStorage.getItem('RecentSearch'));
-                        var options = {
-                            keys: ['term']
-                        }
-                        var counter = 0;
-                        for (var i in recentJson) {
-                            if (recentJson[i].Lyrics != "") {
-                                var lyricsArray = recentJson[i].Lyrics.split(" ");
-                                for (var i = 0, len = lyricsArray.length; i < len; i++) {
+                        if (localStorage.getItem('RecentSearch') != null) {
+                            var recentJson = JSON.parse(localStorage.getItem('RecentSearch'));
+                            var options = {
+                                keys: ['term']
+                            }
+                            var counter = 0;
+                            for (var i in recentJson) {
+                                if (recentJson[i].Lyrics != "") {
+                                    var lyricsArray = recentJson[i].Lyrics.split(" ");
+                                    for (var i = 0, len = lyricsArray.length; i < len; i++) {
+                                        fuse = new Fuse(Obj, options);
+                                        result = fuse.search(lyricsArray[i]);
+                                        if (result.length > 0) {
+                                            var srchText = String(result[0].term);
+                                            var firstresult = { text: srchText, weight: 2, url: glossaryUrl + srchText };
+                                            tagresult.push(firstresult);
+                                        }
+                                    }
+                                }
+                                if (recentJson[i].Deity != "") {
                                     fuse = new Fuse(Obj, options);
-                                    result = fuse.search(lyricsArray[i]);
+                                    result = fuse.search(recentJson[i].Deity);
                                     if (result.length > 0) {
                                         var srchText = String(result[0].term);
-                                        var firstresult = { text: srchText, weight: 2, url: glossaryUrl + srchText };
+                                        var firstresult = { text: srchText, weight: 3, url: glossaryUrl + srchText };
                                         tagresult.push(firstresult);
                                     }
                                 }
                             }
-                            if (recentJson[i].Deity != "") {
-                                fuse = new Fuse(Obj, options);
-                                result = fuse.search(recentJson[i].Deity);
-                                if (result.length > 0) {
-                                    var srchText = String(result[0].term);
-                                    var firstresult = { text: srchText, weight: 3, url: glossaryUrl + srchText };
-                                    tagresult.push(firstresult);
-                                }
-                            }
                         }
+
                         for (k = 0; k < 5; k++) {
                             var randResult = Obj[Math.floor(Math.random() * Obj.length)];
                             var firstresult = { text: randResult.term, weight: 1, url: glossaryUrl + randResult.term };

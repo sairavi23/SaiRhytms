@@ -15,7 +15,11 @@ $(function () {
             var string = reg.exec(href);
             return string ? string[1] : null;
         };
-        var lyrics = getQueryString("lyrics").split('+').join(' ');
+        var lyrics = getQueryString("lyrics");
+        if (lyrics !=null || lyrics != "")
+        {
+            lyrics = lyrics.split('+').join(' ');
+        }
         var deity = getQueryString("deity");
         var complexity = getQueryString("complexity");
         var tempo = getQueryString("tempo");
@@ -215,7 +219,11 @@ $(function () {
             return string ? string[1] : null;
         };
     
-        var lyrics = getQueryString("lyrics").split('+').join(' ');
+        var lyrics = getQueryString("lyrics");
+        if (lyrics !=null || lyrics != "")
+        {
+            lyrics = lyrics.split('+').join(' ');
+        }
         var deity = getQueryString("deity");
         var complexity = getQueryString("complexity");
         var tempo = getQueryString("tempo");

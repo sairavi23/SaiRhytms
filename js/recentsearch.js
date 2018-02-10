@@ -10,7 +10,11 @@ $(function () {
             return string ? string[1] : null;
         };
     
-        var lyrics = getQueryString("lyrics").split('+').join(' ');
+        var lyrics = "";
+        if (getQueryString("lyrics"))
+        {
+            lyrics = getQueryString("lyrics").split('+').join(' ');
+        }
         var deity = getQueryString("deity");
         var complexity = getQueryString("complexity");
         var tempo = getQueryString("tempo");

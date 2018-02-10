@@ -286,8 +286,16 @@
             var string = reg.exec(href);
             return string ? string[1] : null;
         };
-
-        $('#lyrics').val(getQueryString("lyrics").split('+').join(' '));
+        
+        if(getQueryString("lyrics"))
+        {
+            alert("lyrics:" +getQueryString("lyrics"));
+            $('#lyrics').val(getQueryString("lyrics").split('+').join(' '));
+        }
+        else
+        {
+            $('#lyrics').val("");
+        }
         $('#deity').val(getQueryString("deity")).attr("selected", "selected");
         $('#complexity').val(getQueryString("complexity")).attr("selected", "selected");
         $('#tempo').val(getQueryString("tempo")).attr("selected", "selected");

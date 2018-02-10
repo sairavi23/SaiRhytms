@@ -15,7 +15,11 @@ $(function () {
             var string = reg.exec(href);
             return string ? string[1] : null;
         };
-        var lyrics = getQueryString("lyrics").split('+').join(' ');
+        var lyrics = "";
+        if (getQueryString("lyrics"))
+        {
+            lyrics = getQueryString("lyrics").split('+').join(' ');
+        }
         var deity = getQueryString("deity");
         var complexity = getQueryString("complexity");
         var tempo = getQueryString("tempo");
@@ -113,9 +117,9 @@ $(function () {
 
                 if (lyrics == "") {
                     result.sort(function (a, b) {
-                        if (a.label < b.label)
+                        if (a.title < b.title)
                             return -1;
-                        if (a.label > b.label)
+                        if (a.title > b.title)
                             return 1;
                         return 0;
                     });
@@ -202,7 +206,11 @@ $(function () {
             return string ? string[1] : null;
         };
 
-        var lyrics = getQueryString("lyrics").split('+').join(' ');
+        var lyrics = "";
+        if (getQueryString("lyrics"))
+        {
+            lyrics = getQueryString("lyrics").split('+').join(' ');
+        }
         var deity = getQueryString("deity");
         var complexity = getQueryString("complexity");
         var tempo = getQueryString("tempo");
