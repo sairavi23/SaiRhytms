@@ -149,7 +149,7 @@ $(function () {
                             var songname = lyricsformat(pageresult.lyrics, isAudio);
                             listHTML += '<li class="list-group-item" >';
                             if (isFav == "N") {
-                                listHTML += '<button class="btn btn-link FavButton" href=# style="float:right;padding-bottom:10px;" onclick="return saveComment(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')">Favorite +</button>';
+                                listHTML += '<span class="btn btn-primary FavButton" href=# style="float:right;" onclick="return saveComment(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')">Favorite +</span>';
                             }
                             listHTML += '<div><a href=' + link + ' style="color:#0088cc" value=' + pageresult.song_id + '>' + songname + '</li>';
                         });

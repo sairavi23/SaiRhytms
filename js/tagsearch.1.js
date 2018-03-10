@@ -41,7 +41,7 @@ $(function () {
                     },
                     callback: function(response, pagination) {
                         
-                        var listHTML = '<ul id="songlist" data-role="listview" class="list-group" style="padding-left:15px; padding-right:15px;">';
+                        var listHTML = '<br> <ul id="songlist" data-role="listview" class="list-group" style="padding-left:15px; padding-right:15px;">';
                         $.each(response, function (index, pageresult) {
                             var link = "details.html?id=" + pageresult.song_id;
                             var isFav = checkFavoriteExist(pageresult.song_id);
@@ -62,39 +62,6 @@ $(function () {
                         container.prev().html(listHTML);
                     }
                     })
-            },
-            error: function (data) { alert("testingfailed"); }
-        });
-
-        var gdata = $.ajax({
-            url: "json/all_devotional_song_glossary.json",
-            success: function (newresult) {
-                result = JSON.parse(newresult);
-                if (term != "") {
-                    result = result.filter(function (item) {
-                        if (item.term.replace(/(\r\n|\n|\r)/gm, "").toLowerCase()==(term)) {
-                            return item;
-                        }
-                    });
-                };
-                result.sort(function (a, b) {
-                    if (a.term < b.term)
-                        return -1;
-                    if (a.term > b.term)
-                        return 1;
-                    return 0;
-                });
-
-                var tagHTML = '<br> <ul id="taglist" data-role="listview" class="list-group" style="padding-left:15px; padding-right:15px;">';
-                for (var i in result)
-                {
-                    var link = "tagsearch.html?term=" + result[i].term;   
-                    tagHTML += '<li class="list-group-item">';
-                    tagHTML += '<div><a href=' + link + ' style="color:#0088cc" >'+ result[i].term +'</a></div>';
-                    tagHTML += '<div>' + result[i].description + '</div></li>';  
-                }
-                tagHTML += '</ul>';
-                $(".tag-container").html(tagHTML);                
             },
             error: function (data) { alert("testingfailed"); }
         });

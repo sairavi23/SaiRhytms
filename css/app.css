@@ -88,16 +88,51 @@ header {
     padding:10px;
 }
 
-.lyrics::first-line, #firstlinelyrics{ 
-    font-size: x-large;
+.lyrics{ 
+    font-size: 21px;
 }
+
+.lyrics::first-line, #firstlinelyrics{ 
+    font-size: 23px;
+}
+
+
 
  #result a{ 
     font-size: larger;
 }
 
-.data-container a{ 
+.data-container{ 
     font-size: larger;
+}
+
+.data-container .btn-primary, #favourite .btn-primary{ 
+    display: inline-block;
+    padding: .33333rem .3333rem;
+    border-radius: 0;
+    font-size: medium;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: default;
+    background: #1779ba;
+    color: #fefefe
+}
+
+#favourite {
+    padding-left: 10px;
+}
+
+#favourite .btn-danger {
+    display: inline-block;
+    padding: .33333rem .3333rem;
+    border-radius: 0;
+    font-size: medium;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: default;
+    background: rgb(137, 0, 29);
+    border: rgb(137, 0, 29);
+    color: #fefefe
 }
 
 .songdetail{
@@ -130,11 +165,7 @@ header {
     background: linear-gradient(to bottom, #D7E9FC 10%, #E7F2FD 100%)
 }
 
-#alreadyfav{
-    color: green;
-    font-size: medium;
-    padding-left: 20px;
-}
+
 #makefav{
     font-size: medium;
     padding-bottom: 10px;

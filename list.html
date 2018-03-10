@@ -29,7 +29,7 @@
             $("#searchhtml").load("_search.html");
             $("#recentsearchhtml").load("_recentsearch.html");
             $("#footerhtml").load("_footer.html");
-            $("#tagcloudhtml").load("_tagcloud.html");
+            //$("#tagcloudhtml").load("_tagcloud.html");
             loadScript("js/pagination.min.js", function(){
                 loadjscssfile("js/list.js", "js")
             });
@@ -69,6 +69,9 @@
     $(function () {
         $(document).on('click', '.FavButton', function () {
             $(this).html('Favorite added');
+            $(this).css('background','white');
+            $(this).css('border','white');
+            $(this).css('color','grey');
             $(this).prop("disabled", true);
             $("#FavLink").css("font-weight", "bold");
             setTimeout(function () {
