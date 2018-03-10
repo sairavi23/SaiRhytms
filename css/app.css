@@ -118,6 +118,10 @@ header {
     color: #fefefe
 }
 
+.tag-container {
+    font-size: large;
+}
+
 #favourite {
     padding-left: 10px;
 }

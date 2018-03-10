@@ -11,7 +11,7 @@ function TagforDetailsPage(tags) {
                 }
             });
             var tagarray = tags.split(", ");
-            var listHTML = '<div class="songdetail"> <span class="songlabel">Tags (Glossary): </span></div>';
+            var listHTML = '<div class="songdetail"> <span class="songlabel">Glossary: </span></div>';
             listHTML += '<ul id="songlist" data-role="listview" class="list-group" style="padding-left:15px; padding-right:15px;">';
             var tagarray = tags.split(", ");
             if (result.length > 0) {
