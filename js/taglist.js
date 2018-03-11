@@ -15,8 +15,9 @@ $(function () {
             success: function (newresult) {
                 result = JSON.parse(newresult);
                 if (term != "") {
+                    var searchtag = term.toLowerCase();
                     result = result.filter(function (item) {
-                        if (item.term.replace(/(\r\n|\n|\r)/gm, "").toLowerCase().includes(term)) {
+                        if (item.term.replace(/(\r\n|\n|\r)/gm, "").toLowerCase().includes(searchtag)) {
                             return item;
                         }
                     });

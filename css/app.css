@@ -29,6 +29,10 @@ header {
     z-index: 999;
 }
 
+body {
+    font-size: medium;
+}
+
 #list-header {
     border-color: lightgray;
     color: white;
@@ -39,8 +43,18 @@ header {
 #list-header a {
     color: #234b8c;
     font-size: large;
-    padding-left: 20px;
+    padding-left: 10px;
 }
+
+#list-header a .glyphicon{
+    font-size: xx-large;
+}
+
+#Back {
+    float: right;
+    padding-right: 10px;
+}
+
 
 #banner {
     background-color: whitesmoke;
@@ -89,11 +103,12 @@ header {
 }
 
 .lyrics{ 
-    font-size: 21px;
+    font-size: 20px;
 }
 
 .lyrics::first-line, #firstlinelyrics{ 
     font-size: 23px;
+    font-weight: bold;
 }
 
 
@@ -122,8 +137,26 @@ header {
     font-size: large;
 }
 
-#favourite {
-    padding-left: 10px;
+
+#favourite  .glyphicon-star{
+    padding-right: 10px;
+    float: right;
+    font-size: xx-large;
+    color: #234b8c;
+}
+
+#favourite  .glyphicon-star-empty{
+    padding-right: 10px;
+    float: right;
+    font-size: xx-large;
+    color: rgb(137, 0, 29);
+}
+
+#songlist  .glyphicon-star{
+    padding-right: 10px;
+    float: right;
+    font-size: x-large;
+    color: #234b8c
 }
 
 #favourite .btn-danger {
@@ -231,6 +264,8 @@ header {
     width: 100%;
     background-color:whitesmoke;
     overflow: auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .icon-bar a {
@@ -241,6 +276,7 @@ header {
     color:#234b8c;
     font-size: 30px;
 }
+
 
 .active {
     background-color: #234b8c !important;
@@ -334,3 +370,22 @@ header {
     border-radius: 5px; 
     height: 35px;
 }
+
+.searchLabelLeftContainer {
+    text-align: left;
+    padding-bottom: 5px;
+}
+
+.searchLabelRightContainer {
+    text-align: right;
+    padding-bottom: 5px;
+}
+
+#showhideRecentSearch{
+    font-size: larger;
+}
+
+.pagination-demo2 {
+    text-align: center !important;
+}
+

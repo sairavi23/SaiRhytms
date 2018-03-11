@@ -39,10 +39,8 @@
     <div id="headerhtml"></div>
     <div id="detailheader">
         <span id="favourite">
-            <span class="btn btn-primary" id="makefav">Favorite +</span>
+            <span class="glyphicon glyphicon-star" id="makefav"></span>
         </span>
-        <span class="glyphicon glyphicon-circle-arrow-left" style="font:black; color:#234b8c; font-size:23px; float:right ;padding-right: 20px;"
-            onClick="history.go(-1);return true;" />
     </div>
     <div id="detailhtml" class="page-body" style="margin-top:-10px;margin-bottom: -10px;">
         <div data-role="main" class="ui-content" id="result"> </div>
@@ -69,7 +67,7 @@
             <form class="form-horizontal" role="form">
                 <label style="font-weight:bold; color:#0088cc"> Notes for your reference: </label>
                 <span role="alert" id="msg"></span>
-                <button type="button" id="post" class="btn btn-info" style="float:right; height: 30px; font-size:11px;background-color:#234b8c;border-color:#234b8c;">
+                <button type="button" id="post" class="btn btn-info" style="float:right; height: 30px; background-color:#234b8c;border-color:#234b8c;">
                     Save
                 </button>
                 <textarea rows="4" style="height: 150px;margin-top:5px;" class="form-control" id="comment" placeholder="Sairam, Enter your scale or any other comments related to this song"></textarea>

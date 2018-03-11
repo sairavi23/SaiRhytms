@@ -14,7 +14,7 @@ $(function () {
         for (var i in FavJson) {
             if (FavJson[i].Id == id) {
                 document.getElementById("comment").value = FavJson[i].Comment;
-                document.getElementById("favourite").innerHTML = '<span class="btn btn-danger" id="alreadyfav">Remove from Favorites<span/>'
+                document.getElementById("favourite").innerHTML = '<span class="glyphicon glyphicon-star-empty" id="alreadyfav"><span/>'
             }
         }
     }
@@ -31,7 +31,12 @@ $(function () {
     $("#makefav").click
         (function () {
             saveComment(id);
-            location.reload();
+            $("#FavLink").css("font-weight", "bold");
+            setTimeout(function () {
+                $("#FavLink").css("text-decoration", "none");
+                $("#FavLink").css("font-weight", "normal");
+                location.reload();
+            }, 1000);
         });
 
     $("#alreadyfav").click
@@ -66,6 +71,8 @@ $(function () {
             document.getElementById("msg").style.color = "green";
             document.getElementById("msg").innerHTML = "Saved successfully...";
         }
+
+
     }
 
     function unfav(id) {

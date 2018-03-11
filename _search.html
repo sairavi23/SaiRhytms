@@ -14,17 +14,19 @@
                     Reset
                 </a>
                 <button id="search" class="btn btn-info" style="float:right;">
-                        Search
+                    Search
                 </button>
-                
+
             </div>
         </div>
         <div style="display: flex;justify-content: center;">
-        <table id="filtertable" style="margin-left:15px;padding-top:10px;text-align:center">
-            <tr>
-                <td>
-                    <div> Deity:</div>
-                    <select name="deity" id="deity">
+            <table id="filtertable" style="margin-left:15px;text-align:center">
+                <tr>
+                    <td>
+                        <div class="searchLabelLeftContainer">
+                            <span class="label label-default">Deity</span>
+                        </div>
+                        <select name="deity" id="deity">
                             <option value="" selected="">All</option>
                             <option value="ganesha">Ganesha</option>
                             <option value="guru">Guru</option>
@@ -39,246 +41,258 @@
                             <option value="ayyappa">Ayyappa</option>
                             <option value="subramanya">Subramanya</option>
                         </select>
-                </td>
-                <td>
-                        <div> Level:</div>
+                    </td>
+                    <td>
+                        <div class="searchLabelRightContainer">
+                            <span class="label label-default">Level</span>
+                        </div>
                         <select name="complexity" id="complexity">
-                                <option value="" selected="">All</option>
-                                <option value="simple">Simple</option>
-                                <option value="intermediate">Intermediate</option>
-                                <option value="advanced">Advanced</option>
-                            </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div> Tempo:</div>
-                    <select name="tempo" id="tempo">
+                            <option value="" selected="">All</option>
+                            <option value="simple">Simple</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="searchLabelLeftContainer">
+                            <span class="label label-default">Tempo</span>
+                        </div>
+                        <select name="tempo" id="tempo">
                             <option value="" selected="">All</option>
                             <option value="slow">Slow</option>
                             <option value="medium">Medium</option>
                             <option value="fast">Fast</option>
                         </select>
-                </td>
-                <td>
-                        <div> Raaga:</div>
+                    </td>
+                    <td>
+                        <div class="searchLabelRightContainer">
+                            <span class="label label-default">Raaga</span>
+                        </div>
                         <select name="raga" id="raga">
-                                <option value="" selected="">All</option>
-                                <option value="aarabhi">Aarabhi</option>
-                                <option value="abheri">Abheri</option>
-                                <option value="abhogi">Abhogi</option>
-                                <option value="ahir bhairav">Ahir Bhairav</option>
-                                <option value="amruthavarshini">Amruthavarshini</option>
-                                <option value="anand kalyan">Anand Kalyan</option>
-                                <option value="ananda bhairavi">Ananda Bhairavi</option>
-                                <option value="asavari todi">Asavari Todi</option>
-                                <option value="atana">Atana</option>
-                                <option value="bageshri">Bageshri</option>
-                                <option value="bahudari">Bahudari</option>
-                                <option value="basanth">Basanth</option>
-                                <option value="behag">Behag</option>
-                                <option value="bhairagi bhairav">Bhairagi Bhairav</option>
-                                <option value="bhairav">Bhairav</option>
-                                <option value="bhairavi">Bhairavi</option>
-                                <option value="bhatiyar">Bhatiyar</option>
-                                <option value="bhavapriya">Bhavapriya</option>
-                                <option value="bhimpalas">Bhimpalas</option>
-                                <option value="bhoop">Bhoop</option>
-                                <option value="bilahari">Bilahari</option>
-                                <option value="bilaskhani todi">Bilaskhani Todi</option>
-                                <option value="bilawal">Bilawal</option>
-                                <option value="bowli">Bowli</option>
-                                <option value="brindavan sarang">Brindavan Sarang</option>
-                                <option value="chakravakam">Chakravakam</option>
-                                <option value="chakravakam">Chakravakam</option>
-                                <option value="chandrakauns">Chandrakauns</option>
-                                <option value="charukeshi">Charukeshi</option>
-                                <option value="darbari">Darbari</option>
-                                <option value="desh">Desh</option>
-                                <option value="dhanyasi">Dhanyasi</option>
-                                <option value="dharmavati">Dharmavati</option>
-                                <option value="durga">Durga</option>
-                                <option value="dwijavanti">Dwijavanti</option>
-                                <option value="folk tune">Folk Tune</option>
-                                <option value="gara">Gara</option>
-                                <option value="gavati">Gavati</option>
-                                <option value="gowri manohari">Gowri Manohari</option>
-                                <option value="hamir kalyani">Hamir Kalyani</option>
-                                <option value="hamsadhwani">Hamsadhwani</option>
-                                <option value="hamsanandi">Hamsanandi</option>
-                                <option value="harikamboji">Harikamboji</option>
-                                <option value="harmonic minor (keeravani)">Harmonic Minor (Keeravani)</option>
-                                <option value="hindol">Hindol</option>
-                                <option value="hindolam">Hindolam</option>
-                                <option value="jaijaivanti">Jaijaivanti</option>
-                                <option value="jana sammodhini">Jana Sammodhini</option>
-                                <option value="jaunpuri">Jaunpuri</option>
-                                <option value="jhinjhoti">Jhinjhoti</option>
-                                <option value="jog">Jog</option>
-                                <option value="jogiya">Jogiya</option>
-                                <option value="kalavathi">Kalavathi</option>
-                                <option value="kalavati">Kalavati</option>
-                                <option value="kalyana vasantham">Kalyana Vasantham</option>
-                                <option value="kalyani">Kalyani</option>
-                                <option value="kanada">Kanada</option>
-                                <option value="kapi">Kapi</option>
-                                <option value="karna ranjani">Karna Ranjani</option>
-                                <option value="kedar">Kedar</option>
-                                <option value="keeravani">Keeravani</option>
-                                <option value="khamaj">Khamaj</option>
-                                <option value="kharaharapriya">Kharaharapriya</option>
-                                <option value="kuntalavarali">Kuntalavarali</option>
-                                <option value="lalit">Lalit</option>
-                                <option value="light music tune">Light music tune</option>
-                                <option value="maand">Maand</option>
-                                <option value="madhmad sarang">Madhmad Sarang</option>
-                                <option value="madhukauns">Madhukauns</option>
-                                <option value="madhuvanti">Madhuvanti</option>
-                                <option value="madhyamavati">Madhyamavati</option>
-                                <option value="major  (shankarabharanam bilawal)">Major (Shankarabharanam Bilawal)</option>
-                                <option value="major (mohanam bhoop)">Major (Mohanam Bhoop)</option>
-                                <option value="major (shankarabharanam bilawal)">Major (Shankarabharanam Bilawal)</option>
-                                <option value="malayamarutham">Malayamarutham</option>
-                                <option value="malhar">Malhar</option>
-                                <option value="malkauns">Malkauns</option>
-                                <option value="manavati">Manavati</option>
-                                <option value="marwa">Marwa</option>
-                                <option value="mayamalavagowla">Mayamalavagowla</option>
-                                <option value="megh">Megh</option>
-                                <option value="minor (hindolam malkauns)">Minor (Hindolam Malkauns)</option>
-                                <option value="minor (natabhairavi)">Minor (Natabhairavi)</option>
-                                <option value="minor (sindhu bhairavi)">Minor (Sindhu Bhairavi)</option>
-                                <option value="mishra abheri">Mishra Abheri</option>
-                                <option value="mishra bageshri">Mishra Bageshri</option>
-                                <option value="mishra behag">Mishra Behag</option>
-                                <option value="mishra chandrakauns">Mishra Chandrakauns</option>
-                                <option value="mishra darbari">Mishra Darbari</option>
-                                <option value="mishra gara">Mishra Gara</option>
-                                <option value="mishra gowri manohari">Mishra Gowri Manohari</option>
-                                <option value="mishra hindolam">Mishra Hindolam</option>
-                                <option value="mishra jog">Mishra Jog</option>
-                                <option value="mishra kapi">Mishra Kapi</option>
-                                <option value="mishra keeravani">Mishra Keeravani</option>
-                                <option value="mishra maand">Mishra Maand</option>
-                                <option value="mishra malhar">Mishra Malhar</option>
-                                <option value="mishra pahadi">Mishra Pahadi</option>
-                                <option value="mishra pilu">Mishra Pilu</option>
-                                <option value="mishra rageshri">Mishra Rageshri</option>
-                                <option value="mishra sarasangi">Mishra Sarasangi</option>
-                                <option value="mishra shivaranjani">Mishra Shivaranjani</option>
-                                <option value="mishra sindhu bhairavi">Mishra Sindhu Bhairavi</option>
-                                <option value="mishra surya">Mishra Surya</option>
-                                <option value="mishra tilang">Mishra Tilang</option>
-                                <option value="mishra vakulabharanam">Mishra Vakulabharanam</option>
-                                <option value="mishra valaji">Mishra Valaji</option>
-                                <option value="miyan ki malhar">Miyan ki Malhar</option>
-                                <option value="mohana kalyani">Mohana Kalyani</option>
-                                <option value="mohanam">Mohanam</option>
-                                <option value="nadanamakriya">Nadanamakriya</option>
-                                <option value="naga gandhari">Naga Gandhari</option>
-                                <option value="nand">Nand</option>
-                                <option value="natabhairavi">Natabhairavi</option>
-                                <option value="natakurinji">Natakurinji</option>
-                                <option value="nattai">Nattai</option>
-                                <option value="pahadi">Pahadi</option>
-                                <option value="panchamkauns">Panchamkauns</option>
-                                <option value="pantuvarali">Pantuvarali</option>
-                                <option value="patdeep">Patdeep</option>
-                                <option value="pilu">Pilu</option>
-                                <option value="prateeksha">Prateeksha</option>
-                                <option value="punnagavarali">Punnagavarali</option>
-                                <option value="puriya dhanashri">Puriya Dhanashri</option>
-                                <option value="raga mishran">Raga Mishran</option>
-                                <option value="ragavardhini">Ragavardhini</option>
-                                <option value="rageshri">Rageshri</option>
-                                <option value="ranjani">Ranjani</option>
-                                <option value="revagupti">Revagupti</option>
-                                <option value="revathi">Revathi</option>
-                                <option value="sama">Sama</option>
-                                <option value="saramathi">Saramathi</option>
-                                <option value="sarasangi">Sarasangi</option>
-                                <option value="saraswathi">Saraswathi</option>
-                                <option value="shankara">Shankara</option>
-                                <option value="shankarabharanam">Shankarabharanam</option>
-                                <option value="shanmukhapriya">Shanmukhapriya</option>
-                                <option value="shivaranjani">Shivaranjani</option>
-                                <option value="shree">Shree</option>
-                                <option value="shubha pantuvarali">Shubha Pantuvarali</option>
-                                <option value="shuddha dhanyasi">Shuddha Dhanyasi</option>
-                                <option value="shuddha hindolam">Shuddha Hindolam</option>
-                                <option value="shuddha kalyan">Shuddha Kalyan</option>
-                                <option value="shuddha malkauns">Shuddha Malkauns</option>
-                                <option value="shuddha sarang">Shuddha Sarang</option>
-                                <option value="simhendramadhyamam">Simhendramadhyamam</option>
-                                <option value="sindhu bhairavi">Sindhu Bhairavi</option>
-                                <option value="sohini">Sohini</option>
-                                <option value="sriranjani">Sriranjani</option>
-                                <option value="sumanesa ranjani">Sumanesa Ranjani</option>
-                                <option value="sunada vinodini">Sunada Vinodini</option>
-                                <option value="sunanda vinodini">Sunanda Vinodini</option>
-                                <option value="surya">Surya</option>
-                                <option value="tilak kamod">Tilak Kamod</option>
-                                <option value="tilang">Tilang</option>
-                                <option value="todi">Todi</option>
-                                <option value="vachaspati">Vachaspati</option>
-                                <option value="vakulabharanam">Vakulabharanam</option>
-                                <option value="valaji">Valaji</option>
-                                <option value="vasantha">Vasantha</option>
-                                <option value="vasanthi">Vasanthi</option>
-                                <option value="vibhas">Vibhas</option>
-                                <option value="vijaya saraswathi">Vijaya Saraswathi</option>
-                                <option value="western music tune">Western Music Tune</option>
-                                <option value="yadukula kamboji">Yadukula Kamboji</option>
-                                <option value="yaman">Yaman</option>
-                                <option value="yaman kalyan">Yaman Kalyan</option>
-                            </select>
+                            <option value="" selected="">All</option>
+                            <option value="aarabhi">Aarabhi</option>
+                            <option value="abheri">Abheri</option>
+                            <option value="abhogi">Abhogi</option>
+                            <option value="ahir bhairav">Ahir Bhairav</option>
+                            <option value="amruthavarshini">Amruthavarshini</option>
+                            <option value="anand kalyan">Anand Kalyan</option>
+                            <option value="ananda bhairavi">Ananda Bhairavi</option>
+                            <option value="asavari todi">Asavari Todi</option>
+                            <option value="atana">Atana</option>
+                            <option value="bageshri">Bageshri</option>
+                            <option value="bahudari">Bahudari</option>
+                            <option value="basanth">Basanth</option>
+                            <option value="behag">Behag</option>
+                            <option value="bhairagi bhairav">Bhairagi Bhairav</option>
+                            <option value="bhairav">Bhairav</option>
+                            <option value="bhairavi">Bhairavi</option>
+                            <option value="bhatiyar">Bhatiyar</option>
+                            <option value="bhavapriya">Bhavapriya</option>
+                            <option value="bhimpalas">Bhimpalas</option>
+                            <option value="bhoop">Bhoop</option>
+                            <option value="bilahari">Bilahari</option>
+                            <option value="bilaskhani todi">Bilaskhani Todi</option>
+                            <option value="bilawal">Bilawal</option>
+                            <option value="bowli">Bowli</option>
+                            <option value="brindavan sarang">Brindavan Sarang</option>
+                            <option value="chakravakam">Chakravakam</option>
+                            <option value="chakravakam">Chakravakam</option>
+                            <option value="chandrakauns">Chandrakauns</option>
+                            <option value="charukeshi">Charukeshi</option>
+                            <option value="darbari">Darbari</option>
+                            <option value="desh">Desh</option>
+                            <option value="dhanyasi">Dhanyasi</option>
+                            <option value="dharmavati">Dharmavati</option>
+                            <option value="durga">Durga</option>
+                            <option value="dwijavanti">Dwijavanti</option>
+                            <option value="folk tune">Folk Tune</option>
+                            <option value="gara">Gara</option>
+                            <option value="gavati">Gavati</option>
+                            <option value="gowri manohari">Gowri Manohari</option>
+                            <option value="hamir kalyani">Hamir Kalyani</option>
+                            <option value="hamsadhwani">Hamsadhwani</option>
+                            <option value="hamsanandi">Hamsanandi</option>
+                            <option value="harikamboji">Harikamboji</option>
+                            <option value="harmonic minor (keeravani)">Harmonic Minor (Keeravani)</option>
+                            <option value="hindol">Hindol</option>
+                            <option value="hindolam">Hindolam</option>
+                            <option value="jaijaivanti">Jaijaivanti</option>
+                            <option value="jana sammodhini">Jana Sammodhini</option>
+                            <option value="jaunpuri">Jaunpuri</option>
+                            <option value="jhinjhoti">Jhinjhoti</option>
+                            <option value="jog">Jog</option>
+                            <option value="jogiya">Jogiya</option>
+                            <option value="kalavathi">Kalavathi</option>
+                            <option value="kalavati">Kalavati</option>
+                            <option value="kalyana vasantham">Kalyana Vasantham</option>
+                            <option value="kalyani">Kalyani</option>
+                            <option value="kanada">Kanada</option>
+                            <option value="kapi">Kapi</option>
+                            <option value="karna ranjani">Karna Ranjani</option>
+                            <option value="kedar">Kedar</option>
+                            <option value="keeravani">Keeravani</option>
+                            <option value="khamaj">Khamaj</option>
+                            <option value="kharaharapriya">Kharaharapriya</option>
+                            <option value="kuntalavarali">Kuntalavarali</option>
+                            <option value="lalit">Lalit</option>
+                            <option value="light music tune">Light music tune</option>
+                            <option value="maand">Maand</option>
+                            <option value="madhmad sarang">Madhmad Sarang</option>
+                            <option value="madhukauns">Madhukauns</option>
+                            <option value="madhuvanti">Madhuvanti</option>
+                            <option value="madhyamavati">Madhyamavati</option>
+                            <option value="major  (shankarabharanam bilawal)">Major (Shankarabharanam Bilawal)</option>
+                            <option value="major (mohanam bhoop)">Major (Mohanam Bhoop)</option>
+                            <option value="major (shankarabharanam bilawal)">Major (Shankarabharanam Bilawal)</option>
+                            <option value="malayamarutham">Malayamarutham</option>
+                            <option value="malhar">Malhar</option>
+                            <option value="malkauns">Malkauns</option>
+                            <option value="manavati">Manavati</option>
+                            <option value="marwa">Marwa</option>
+                            <option value="mayamalavagowla">Mayamalavagowla</option>
+                            <option value="megh">Megh</option>
+                            <option value="minor (hindolam malkauns)">Minor (Hindolam Malkauns)</option>
+                            <option value="minor (natabhairavi)">Minor (Natabhairavi)</option>
+                            <option value="minor (sindhu bhairavi)">Minor (Sindhu Bhairavi)</option>
+                            <option value="mishra abheri">Mishra Abheri</option>
+                            <option value="mishra bageshri">Mishra Bageshri</option>
+                            <option value="mishra behag">Mishra Behag</option>
+                            <option value="mishra chandrakauns">Mishra Chandrakauns</option>
+                            <option value="mishra darbari">Mishra Darbari</option>
+                            <option value="mishra gara">Mishra Gara</option>
+                            <option value="mishra gowri manohari">Mishra Gowri Manohari</option>
+                            <option value="mishra hindolam">Mishra Hindolam</option>
+                            <option value="mishra jog">Mishra Jog</option>
+                            <option value="mishra kapi">Mishra Kapi</option>
+                            <option value="mishra keeravani">Mishra Keeravani</option>
+                            <option value="mishra maand">Mishra Maand</option>
+                            <option value="mishra malhar">Mishra Malhar</option>
+                            <option value="mishra pahadi">Mishra Pahadi</option>
+                            <option value="mishra pilu">Mishra Pilu</option>
+                            <option value="mishra rageshri">Mishra Rageshri</option>
+                            <option value="mishra sarasangi">Mishra Sarasangi</option>
+                            <option value="mishra shivaranjani">Mishra Shivaranjani</option>
+                            <option value="mishra sindhu bhairavi">Mishra Sindhu Bhairavi</option>
+                            <option value="mishra surya">Mishra Surya</option>
+                            <option value="mishra tilang">Mishra Tilang</option>
+                            <option value="mishra vakulabharanam">Mishra Vakulabharanam</option>
+                            <option value="mishra valaji">Mishra Valaji</option>
+                            <option value="miyan ki malhar">Miyan ki Malhar</option>
+                            <option value="mohana kalyani">Mohana Kalyani</option>
+                            <option value="mohanam">Mohanam</option>
+                            <option value="nadanamakriya">Nadanamakriya</option>
+                            <option value="naga gandhari">Naga Gandhari</option>
+                            <option value="nand">Nand</option>
+                            <option value="natabhairavi">Natabhairavi</option>
+                            <option value="natakurinji">Natakurinji</option>
+                            <option value="nattai">Nattai</option>
+                            <option value="pahadi">Pahadi</option>
+                            <option value="panchamkauns">Panchamkauns</option>
+                            <option value="pantuvarali">Pantuvarali</option>
+                            <option value="patdeep">Patdeep</option>
+                            <option value="pilu">Pilu</option>
+                            <option value="prateeksha">Prateeksha</option>
+                            <option value="punnagavarali">Punnagavarali</option>
+                            <option value="puriya dhanashri">Puriya Dhanashri</option>
+                            <option value="raga mishran">Raga Mishran</option>
+                            <option value="ragavardhini">Ragavardhini</option>
+                            <option value="rageshri">Rageshri</option>
+                            <option value="ranjani">Ranjani</option>
+                            <option value="revagupti">Revagupti</option>
+                            <option value="revathi">Revathi</option>
+                            <option value="sama">Sama</option>
+                            <option value="saramathi">Saramathi</option>
+                            <option value="sarasangi">Sarasangi</option>
+                            <option value="saraswathi">Saraswathi</option>
+                            <option value="shankara">Shankara</option>
+                            <option value="shankarabharanam">Shankarabharanam</option>
+                            <option value="shanmukhapriya">Shanmukhapriya</option>
+                            <option value="shivaranjani">Shivaranjani</option>
+                            <option value="shree">Shree</option>
+                            <option value="shubha pantuvarali">Shubha Pantuvarali</option>
+                            <option value="shuddha dhanyasi">Shuddha Dhanyasi</option>
+                            <option value="shuddha hindolam">Shuddha Hindolam</option>
+                            <option value="shuddha kalyan">Shuddha Kalyan</option>
+                            <option value="shuddha malkauns">Shuddha Malkauns</option>
+                            <option value="shuddha sarang">Shuddha Sarang</option>
+                            <option value="simhendramadhyamam">Simhendramadhyamam</option>
+                            <option value="sindhu bhairavi">Sindhu Bhairavi</option>
+                            <option value="sohini">Sohini</option>
+                            <option value="sriranjani">Sriranjani</option>
+                            <option value="sumanesa ranjani">Sumanesa Ranjani</option>
+                            <option value="sunada vinodini">Sunada Vinodini</option>
+                            <option value="sunanda vinodini">Sunanda Vinodini</option>
+                            <option value="surya">Surya</option>
+                            <option value="tilak kamod">Tilak Kamod</option>
+                            <option value="tilang">Tilang</option>
+                            <option value="todi">Todi</option>
+                            <option value="vachaspati">Vachaspati</option>
+                            <option value="vakulabharanam">Vakulabharanam</option>
+                            <option value="valaji">Valaji</option>
+                            <option value="vasantha">Vasantha</option>
+                            <option value="vasanthi">Vasanthi</option>
+                            <option value="vibhas">Vibhas</option>
+                            <option value="vijaya saraswathi">Vijaya Saraswathi</option>
+                            <option value="western music tune">Western Music Tune</option>
+                            <option value="yadukula kamboji">Yadukula Kamboji</option>
+                            <option value="yaman">Yaman</option>
+                            <option value="yaman kalyan">Yaman Kalyan</option>
+                        </select>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div> Media:</div>
-                    <select name="media" id="media">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="searchLabelLeftContainer">
+                            <span class="label label-default">Media</span>
+                        </div>
+                        <select name="media" id="media">
                             <option value="" selected="">All</option>
                             <option value="y">With Audio</option>
                             <option value="n">No Media</option>
                         </select>
-                </td>
-                <td>
-                        <div> Beat:</div>
+                    </td>
+                    <td>
+                        <div class="searchLabelRightContainer">
+                            <span class="label label-default">Beat</span>
+                        </div>
                         <select name="beat" id="beat">
-                                <option value="" selected="">All</option>
-                                <option value="keherwa">8 Beat</option>
-                                <option value="dadra">6 Beat</option>
-                                <option value="roopak">7 Beat</option>
-                                <option value="jap">10 Beat</option>
-                            </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div> Langauge:</div>
-                    <select name="language" id="language">
-                        <option value="" selected="">All</option>
-                        <option value="english">English</option>
-                        <option value="hindi">Hindi</option>
-                        <option value="spanish">Spanish</option>
-                        <option value="tamil">Tamil</option>
-                        <option value="telugu">Telugu</option>
-                        <option value="other">Other</option>
-                    </select>
-                </td>
-                <td></td>
-            </tr>
-        </table>
-    </div>
+                            <option value="" selected="">All</option>
+                            <option value="keherwa">8 Beat</option>
+                            <option value="dadra">6 Beat</option>
+                            <option value="roopak">7 Beat</option>
+                            <option value="jap">10 Beat</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="searchLabelLeftContainer">
+                            <span class="label label-default">Language</span>
+                        </div>
+                        <select name="language" id="language">
+                            <option value="" selected="">All</option>
+                            <option value="english">English</option>
+                            <option value="hindi">Hindi</option>
+                            <option value="spanish">Spanish</option>
+                            <option value="tamil">Tamil</option>
+                            <option value="telugu">Telugu</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
         <input type="hidden" name="page" value="1">
     </form>
 </div>
 
 <script>
-    $(document).ready(function() {
-        
+    $(document).ready(function () {
+
 
         var getQueryString = function (field, url) {
             var href = url ? url : window.location.href;
@@ -286,13 +300,11 @@
             var string = reg.exec(href);
             return string ? string[1] : null;
         };
-        
-        if(getQueryString("lyrics"))
-        {
+
+        if (getQueryString("lyrics")) {
             $('#lyrics').val(getQueryString("lyrics").split('+').join(' '));
         }
-        else
-        {
+        else {
             $('#lyrics').val("");
         }
         $('#deity').val(getQueryString("deity")).attr("selected", "selected");
@@ -309,16 +321,14 @@
             || getQueryString("media")
             || getQueryString("beat")
             || getQueryString("language")
-           )
-        {
+        ) {
             $('#filter').css("background-color", "#cc8b00");
-            $('#filter').css("border-color", "#cc8b00");  
+            $('#filter').css("border-color", "#cc8b00");
             $('#filter').css("color", "white");
         }
-        else
-        {
+        else {
             $('#filter').css("background-color", "white");
-            $('#filter').css("border-color", "darkgrey");  
+            $('#filter').css("border-color", "darkgrey");
             $('#filter').css("color", "#242121");
         }
 
@@ -330,38 +340,34 @@
             || getQueryString("beat")
             || getQueryString("language")
             || getQueryString("lyrics")
-           )
-        {
+        ) {
             $('#filtertable').hide();
             $('#filter').html("Filter +");
         }
-        else
-        {
+        else {
             $('#filtertable').show();
             $('#filter').html("Filter -");
         }
 
-       
-        $('#filter').click(function() {
-            if ($('#filter').html()=="Filter +")
-            {
+
+        $('#filter').click(function () {
+            if ($('#filter').html() == "Filter +") {
                 $('#filtertable').show();
                 $('#filter').html("Filter -");
             }
-            else
-            {
+            else {
                 $('#filtertable').hide();
                 $('#filter').html("Filter +");
             }
-        }); 
+        });
 
         $('#remove').css("background-color", "#89001d");
         $('#remove').css("border-color", "#89001d");
 
-        $('select').css({'width': $( document ).width()/2.5});
+        $('select').css({ 'width': $(document).width() / 2.5 });
 
-        $( window ).resize(function() {
-            $('select').css({'width': $( document ).width()/2.5});
+        $(window).resize(function () {
+            $('select').css({ 'width': $(document).width() / 2.5 });
         });
 
     });

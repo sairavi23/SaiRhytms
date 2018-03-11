@@ -1,5 +1,5 @@
 
-<div class="btn btn-link" id="showhideRecentSearch" >View Recent Search Results</div>
+<div class="btn btn-link" id="showhideRecentSearch" >Recent Searches</div>
 <div id="RecentSearch"></div>
 
 <script>
@@ -8,14 +8,14 @@
         {
             
             $("#showhideRecentSearch").click(function(){
-                if ($("#showhideRecentSearch").html().toUpperCase()== "VIEW RECENT SEARCH RESULTS")
+                if ($("#showhideRecentSearch").html().toUpperCase()== "RECENT SEARCHES")
                 {
-                    $("#showhideRecentSearch").html('<span style="color:red">Close Recent Search Results <span class="glyphicon glyphicon-remove-sign" /></span>');
+                    $("#showhideRecentSearch").html('<span style="color:red">Close Recent Searches<span class="glyphicon glyphicon-remove-sign" /></span>');
                     $("#RecentSearch").html(BuildRecentSearchHtml());
                 }
                 else
                 {
-                    $("#showhideRecentSearch").html("View Recent Search Results");
+                    $("#showhideRecentSearch").html("Recent Searches");
                     $("#RecentSearch").html("");
                 }
             });
