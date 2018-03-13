@@ -26,15 +26,19 @@ $(function () {
     $("#post").click
         (function () {
             saveComment(id);
+            $("#FavLink").css("color", "DarkGreen");
+            setTimeout(function () {
+                $("#FavLink").css("color", "#234b8c");
+                location.reload();
+            }, 1000);
         });
 
     $("#makefav").click
         (function () {
             saveComment(id);
-            $("#FavLink").css("font-weight", "bold");
+            $("#FavLink").css("color", "DarkGreen");
             setTimeout(function () {
-                $("#FavLink").css("text-decoration", "none");
-                $("#FavLink").css("font-weight", "normal");
+                $("#FavLink").css("color", "#234b8c");
                 location.reload();
             }, 1000);
         });
@@ -42,7 +46,11 @@ $(function () {
     $("#alreadyfav").click
         (function () {
             unfav(id);
-            location.reload();
+            $("#FavLink").css("color", "grey");
+            setTimeout(function () {
+                $("#FavLink").css("color", "#234b8c");
+                location.reload();
+            }, 1000);
         });
 
     function saveComment(id) {
@@ -87,7 +95,6 @@ $(function () {
                 }
             }
             localStorage.setItem('Fav', JSON.stringify(removeJson));
-            location.reload();
         }
     }
 
@@ -154,11 +161,12 @@ $(function () {
                 document.getElementById('noaudio').style.display = "none";
                 document.getElementById('nointernet').style.display = "none";
             }
-            else if (musiclink == "") {
+            else if (isEmptyOrSpaces(musiclink)) {
                 document.getElementById('audiotag').style.display = "none";
                 document.getElementById('soundplayer').style.display = "none";
                 document.getElementById('nointernet').style.display = "none";
                 document.getElementById('noaudio').innerHTML = "No Audio available. If you have the Audio for this Bhajan, <a href='https://sairegion3.org/contact-us/'>Contact Us</a>";
+                document.getElementById('noaudio').style.display = "";
             }
             else if (!musiclink.includes("soundcloud")) {
                 document.getElementById('audioPlayer').src = musiclink;
@@ -207,5 +215,9 @@ $(function () {
         var formattedresult = lyrics.replace("\n", "</div>");
         formattedresult = formattedresult.replace(/(\r\n|\n|\r)/gm, "<br>");
         return formattedresult;
+    }
+
+    function isEmptyOrSpaces(str){
+        return str === null || str.match(/^ *$/) !== null;
     }
 });

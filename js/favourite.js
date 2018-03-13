@@ -46,5 +46,4 @@ $(function () {
     }
 
     $('#deity').val(deity).attr("selected", "selected");
-
 });

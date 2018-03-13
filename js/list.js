@@ -1,5 +1,5 @@
 $(function () {
-
+    $("#Search").css("color", "#0088cc");
     function pagenext(page) {
         var currenturl = window.location.href;
         var lastequal = currenturl.lastIndexOf("page=");
@@ -16,8 +16,7 @@ $(function () {
             return string ? string[1] : null;
         };
         var lyrics = "";
-        if (getQueryString("lyrics"))
-        {
+        if (getQueryString("lyrics")) {
             lyrics = getQueryString("lyrics").split('+').join(' ');
         }
         var deity = getQueryString("deity");
@@ -105,12 +104,27 @@ $(function () {
                 };
 
                 if (language != "") {
-                    result = result.filter(function (item) {
-                        if (item.language.replace(/(\r\n|\n|\r)/gm, "").toLowerCase().includes(language)) {
-                            return item;
-                        }
-                    });
-                };
+                    if (language != "other") {
+                        result = result.filter(function (item) {
+                            if (item.language.replace(/(\r\n|\n|\r)/gm, "").toLowerCase().includes(language)) {
+                                return item;
+                            }
+                        });
+                    }
+                    else {
+                        result = result.filter(function (item) {
+                            var languageJson = item.language.replace(/(\r\n|\n|\r)/gm, "").toLowerCase();
+                            if(languageJson.includes("english") == false
+                                && languageJson.includes("hindi") == false
+                                && languageJson.includes("tamil") == false  
+                                && languageJson.includes("telugu") == false 
+                                && languageJson.includes("spanish") == false)
+                                {
+                                    return item;
+                                }
+                        });
+                    }
+                }
 
                 var length = result.length;
 
@@ -135,7 +149,7 @@ $(function () {
                         }
                     },
                     callback: function (response, pagination) {
-                        
+
                         var listHTML = '<br> <ul id="songlist" data-role="listview" class="list-group" style="padding-left:15px; padding-right:15px;">';
                         listHTML += '<span class="page-title">Search Results:</span>';
                         $.each(response, function (index, pageresult) {
@@ -206,8 +220,7 @@ $(function () {
         };
 
         var lyrics = "";
-        if (getQueryString("lyrics"))
-        {
+        if (getQueryString("lyrics")) {
             lyrics = getQueryString("lyrics").split('+').join(' ');
         }
         var deity = getQueryString("deity");
@@ -251,13 +264,21 @@ $(function () {
 
         var existingsearch = 0;
         var name = formattedname;
+        var setId = 0;
         searchquery = "list.html" + searchquery;
         if (localStorage.getItem('RecentSearch') === null) {
-            var recent = [{ Name: name, Link: searchquery, Lyrics: lyrics, Deity: deity, DateSearched: new Date }];
+            var recent = [{Id:1, Name: name, Link: searchquery, Lyrics: lyrics, Deity: deity, DateSearched: new Date }];
             localStorage.setItem('RecentSearch', JSON.stringify(recent));
         }
         else {
             var recentJson = JSON.parse(localStorage.getItem('RecentSearch'));
+            for (var i in recentJson){
+                if(setId < recentJson[i].Id)
+                {
+                    setId = recentJson[i].Id
+                }
+            }
+            setId = setId + 1;
             for (var i in recentJson) {
                 if (recentJson[i].Name == name) {
                     existingsearch = 1;
@@ -265,7 +286,7 @@ $(function () {
                 }
             }
             if (existingsearch != 1) {
-                newrecent = { Name: name, Link: searchquery, Lyrics: lyrics, Deity: deity };
+                newrecent = {Id:setId, Name: name, Link: searchquery, Lyrics: lyrics, Deity: deity };
                 recentJson.push(newrecent);
                 localStorage.setItem('RecentSearch', JSON.stringify(recentJson))
             }
@@ -283,6 +304,23 @@ $(function () {
 
         }
     }
+
+
+    function removeRecentSearch(id) {
+        if (localStorage.getItem('RecentSearch') != null) {
+            var removeJson = JSON.parse(localStorage.getItem('RecentSearch'));
+            var counter = -1;
+            for (var i in removeJson) {
+                counter = counter + 1;
+                if (recentJson[i].Id == id) {
+                    removeJson.splice(counter, 1);
+                    localStorage.setItem('RecentSearch', JSON.stringify(recentJson))
+                    break;
+                }
+            }
+        }
+    }
+
 
     function compare(a, b) {
         if (new Date(a.source) < new Date(b.source))

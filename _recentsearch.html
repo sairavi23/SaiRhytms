@@ -1,48 +1,60 @@
-
-<div class="btn btn-link" id="showhideRecentSearch" >Recent Searches</div>
+<div class="btn btn-link" id="showhideRecentSearch">Recent Searches</div>
 <div id="RecentSearch"></div>
 
 <script>
-        $(function () 
-        
-        {
-            
-            $("#showhideRecentSearch").click(function(){
-                if ($("#showhideRecentSearch").html().toUpperCase()== "RECENT SEARCHES")
-                {
-                    $("#showhideRecentSearch").html('<span style="color:red">Close Recent Searches<span class="glyphicon glyphicon-remove-sign" /></span>');
-                    $("#RecentSearch").html(BuildRecentSearchHtml());
-                }
-                else
-                {
-                    $("#showhideRecentSearch").html("Recent Searches");
-                    $("#RecentSearch").html("");
-                }
-            });
-            
-            
-            
-            function BuildRecentSearchHtml()
-            {
-                var searchHtml = "";
-                searchHtml = searchHtml + '<ul data-role="listview" class="list-group">';
-                if (localStorage.getItem('RecentSearch') === null) {
-                    searchHtml = '<li class="list-group-item"> No Recent Searches</li>'
-                }
-                else {
-                    var recentJson = JSON.parse(localStorage.getItem('RecentSearch'));
-                    for (var i in recentJson) {
-                        if (recentJson[i].Name != "")
-                        {
-                            searchHtml = searchHtml + '<li class="list-group-item"> <a href='+ recentJson[i].Link +'>'+ recentJson[i].Name +'</a></li>';
-                        }
+    $(function () {
+
+        $("#showhideRecentSearch").click(function () {
+            if ($("#showhideRecentSearch").html().toUpperCase() == "RECENT SEARCHES") {
+                $("#showhideRecentSearch").html('<span style="color:red">Close Recent Searches <span class="glyphicon glyphicon-minus" /></span>');
+                $("#RecentSearch").html(BuildRecentSearchHtml());
+            }
+            else {
+                $("#showhideRecentSearch").html("Recent Searches");
+                $("#RecentSearch").html("");
+            }
+        });
+
+        function BuildRecentSearchHtml() {
+            var searchHtml = "";
+            searchHtml = searchHtml + '<ul data-role="listview" class="list-group">';
+            if (localStorage.getItem('RecentSearch') === null) {
+                searchHtml = '<li class="list-group-item"> No Recent Searches</li>'
+            }
+            else {
+                var recentJson = JSON.parse(localStorage.getItem('RecentSearch'));
+                for (var i in recentJson) {
+                    if (recentJson[i].Name != "") {
+                        searchHtml = searchHtml + '<li class="list-group-item"> <a href=' + recentJson[i].Link + '>' + recentJson[i].Name + '</a>';
+                        searchHtml = searchHtml + '<span class="glyphicon glyphicon-trash removeRecentSearch" style="float:right; padding-left:20px;" id= ' + recentJson[i].Id + '"></span></li>';
                     }
                 }
-                searchHtml = searchHtml + "</ul>";
-                return searchHtml;
             }
-    
+            searchHtml = searchHtml + "</ul>";
+            return searchHtml;
+        }
+
+        $(document).on('click', '.removeRecentSearch', function () {
+            var id = $(this).attr('id');
+            id = id.replace('"','');
+            if (localStorage.getItem('RecentSearch') != null) {
+                var removeJson = JSON.parse(localStorage.getItem('RecentSearch'));
+                var counter = -1;
+                for (var i in removeJson) {
+                    counter = counter + 1;
+                    if (removeJson[i].Id == id) {
+                        console.log(removeJson[i].Id);
+                        removeJson.splice(counter, 1);
+                        localStorage.setItem('RecentSearch', JSON.stringify(removeJson))
+                        break;
+                    }
+                }
+                $("#showhideRecentSearch").html('<span style="color:red">Close Recent Searches <span class="glyphicon glyphicon-minus" /></span>');
+                $("#RecentSearch").html(BuildRecentSearchHtml());
+            }
         });
-    
-    
-        </script>
+
+    });
+
+
+</script>

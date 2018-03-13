@@ -38,6 +38,11 @@
         });
     </script>
 
+    <style>
+         #Glossary {
+     color: #0088cc !important;
+    }
+    </style>
 </head>
 
 <body>
@@ -79,11 +84,14 @@
     $(function () {
         $(document).on('click', '.FavButton', function () {
             $(this).html('Favorite added');
+            $(this).css('background','white');
+            $(this).css('border','white');
+            $(this).css('color','grey');
+            $(this).css('font-size','medium');
             $(this).prop("disabled", true);
-            $("#FavLink").css("font-weight", "bold");
+            $("#FavLink").css("color", "darkgreen");
             setTimeout(function () {
-                $("#FavLink").css("text-decoration", "none");
-                $("#FavLink").css("font-weight", "normal");
+                $("#FavLink").css("color", "#234b8c");
             }, 3000);
 
         });
