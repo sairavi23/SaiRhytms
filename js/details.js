@@ -14,7 +14,7 @@ $(function () {
         for (var i in FavJson) {
             if (FavJson[i].Id == id) {
                 document.getElementById("comment").value = FavJson[i].Comment;
-                document.getElementById("favourite").innerHTML = '<span class="glyphicon glyphicon-star-empty" id="alreadyfav"><span/>'
+                document.getElementById("favourite").innerHTML = '<span class="glyphicon glyphicon-star" id="alreadyfav"><span/>'
             }
         }
     }
@@ -37,6 +37,9 @@ $(function () {
         (function () {
             saveComment(id);
             $("#FavLink").css("color", "DarkGreen");
+            $(this).html('Added to Favorites');
+            $(this).css('color','DarkGreen');
+            $(this).css('font-size','medium');
             setTimeout(function () {
                 $("#FavLink").css("color", "#234b8c");
                 location.reload();
@@ -47,6 +50,9 @@ $(function () {
         (function () {
             unfav(id);
             $("#FavLink").css("color", "grey");
+            $(this).html('Removed from Favorites');
+            $(this).css('color','grey');
+            $(this).css('font-size','medium');
             setTimeout(function () {
                 $("#FavLink").css("color", "#234b8c");
                 location.reload();
@@ -124,11 +130,11 @@ $(function () {
                         var listHTML = '';
                         listHTML += '<div id=songdetail">'
                         listHTML += '<div id="songtitle" style="display: none;">' + data[i].title + '</div>'
-                        listHTML += '<div class="songdetail lyrics"><div id="firstlinelyrics">' + lyrics + '</div>'
+                        listHTML += '<div class="songdetail lyrics" style="padding-bottom:2rem;"><div id="firstlinelyrics">' + lyrics + '</div>'
                         if (meaning != "") {
-                            listHTML += '<div style="padding:8px;"><div class="songdetail meaning">' + meaning + '</div></div>'
+                            listHTML += '<div style="padding:8px;margin-bottom:2rem"><div class="songdetail meaning">' + meaning + '</div></div>'
                         }
-                        listHTML += '<div class="songdetailAlt" style=padding-top:10px;> <span class="songlabel">Deity: </span><span id="songdeity">' + data[i].deity + '</span></div>'
+                        listHTML += '<div class="songdetailAlt"> <span class="songlabel">Deity: </span><span id="songdeity">' + data[i].deity + '</span></div>'
                         listHTML += '<div class="songdetail"> <span class="songlabel">Language: </span>' + data[i].language + '</div>'
                         listHTML += '<div class="songdetailAlt"> <span class="songlabel">Beat: </span>' + data[i].beat + '</div>'
                         listHTML += '<div class="songdetail"> <span class="songlabel">Raga: </span>' + data[i].raga + '</div>'

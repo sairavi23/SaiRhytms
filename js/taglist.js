@@ -14,21 +14,23 @@ $(function () {
             url: "json/all_devotional_song_glossary.json",
             success: function (newresult) {
                 result = JSON.parse(newresult);
+
+                var options = {
+                    keys: ['term']
+                }
                 if (term != "") {
-                    var searchtag = term.toLowerCase();
-                    result = result.filter(function (item) {
-                        if (item.term.replace(/(\r\n|\n|\r)/gm, "").toLowerCase().includes(searchtag)) {
-                            return item;
-                        }
+                    fuse = new Fuse(result, options);
+                    result = fuse.search(term);
+                }
+                else {
+                    result.sort(function (a, b) {
+                        if (a.term < b.term)
+                            return -1;
+                        if (a.term > b.term)
+                            return 1;
+                        return 0;
                     });
-                };
-                result.sort(function (a, b) {
-                    if (a.term < b.term)
-                        return -1;
-                    if (a.term > b.term)
-                        return 1;
-                    return 0;
-                });
+                }
 
                 var container = $('#pagination-demo2');
                     container.pagination({

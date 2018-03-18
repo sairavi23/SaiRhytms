@@ -1,5 +1,5 @@
 var music = document.getElementById('audioPlayer'); // id for audio element
-var duration = 0; // Duration of audio clip
+var duration = music.duration;  // Duration of audio clip
 var pButton = document.getElementById('pButton'); // play button
 
 var playhead = document.getElementById('playhead'); // playhead
@@ -64,9 +64,7 @@ function moveplayhead(e) {
 // timeUpdate 
 // Synchronizes playhead position with current point in audio 
 function timeUpdate() {
-    if (duration !=0)
-    {
-        var playPercent = timelineWidth * (music.currentTime / duration);
+    var playPercent = timelineWidth * (music.currentTime / duration);
         document.getElementById('songduration').innerText = TimeConvert(music.duration); 
         document.getElementById('songcurrent').innerText = TimeConvert(music.currentTime);    
         playhead.style.marginLeft = playPercent + "px";
@@ -74,7 +72,6 @@ function timeUpdate() {
             pButton.className = "";
             pButton.className = "play";
         }
-    }
 }
 
 //Play and Pause

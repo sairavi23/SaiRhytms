@@ -163,7 +163,7 @@ $(function () {
                             var songname = lyricsformat(pageresult.lyrics, isAudio);
                             listHTML += '<li class="list-group-item" >';
                             if (isFav == "N") {
-                                listHTML += '<span class="glyphicon glyphicon-star FavButton" href=# style="float:right;" onclick="return saveComment(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')"></span>';
+                                listHTML += '<span class="glyphicon glyphicon-star-empty FavButton" href=# style="float:right;" onclick="return saveComment(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')"></span>';
                             }
                             listHTML += '<div><a href=' + link + ' style="color:#0088cc" value=' + pageresult.song_id + '>' + songname + '</li>';
                         });
@@ -320,7 +320,6 @@ $(function () {
             }
         }
     }
-
 
     function compare(a, b) {
         if (new Date(a.source) < new Date(b.source))
