@@ -46,17 +46,7 @@
         <div data-role="main" class="ui-content" id="result"> </div>
         <div id="audioall" style="text-align:center; padding-left:10px;">
             <div id="audiotag">
-                <audio id="audioPlayer" preload="true"></audio>
-                <div id="audioplayer">
-                    <button id="pButton" class="play" onclick="play()"></button>
-                    <div id="timeline">
-                        <div id="playhead"></div>
-                    </div>
-                    <p>
-                        <div id="songduration" style="float:right"></div>
-                        <div id="songcurrent" style="float:left"> </div>
-                    </p>
-                </div>
+                <audio id="audioPlayer" style="width:230px;height:50px" controls="true" preload="auto"></audio>
             </div>
             <div id="soundplayer" height="50px"> </div>
             <div id="noaudio" class="alert alert-warning" role="alert" style="display:none;"> </div>
@@ -76,7 +66,7 @@
     </div>
     <div id="tagdetailhtml" style="padding-bottom:60px;"></div>
     <div id="footerhtml"></div>
-    <script src="js/audioset.js"> </script>
+
 </body>
 
 </html>

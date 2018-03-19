@@ -19,7 +19,12 @@ $(function () {
         if (getQueryString("lyrics")) {
             lyrics = getQueryString("lyrics").split('+').join(' ');
         }
-        var deity = getQueryString("deity");
+        var deity = ""; //getQueryString("deity");
+        if (getQueryString("deity")) {
+            deity = getQueryString("deity").split('+').join(' ');
+            $('#deity').val(deity).change();
+            //$('#deity  option[value="val2"]').prop("selected", true);
+        }
         var complexity = getQueryString("complexity");
         var tempo = getQueryString("tempo");
         var raga = getQueryString("raga");

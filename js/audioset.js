@@ -65,8 +65,8 @@ function moveplayhead(e) {
 // Synchronizes playhead position with current point in audio 
 function timeUpdate() {
     var playPercent = timelineWidth * (music.currentTime / duration);
-        document.getElementById('songduration').innerText = TimeConvert(music.duration); 
-        document.getElementById('songcurrent').innerText = TimeConvert(music.currentTime);    
+        document.getElementById('songduration').innerText = isNaN(music.duration)? '' : TimeConvert(music.duration); 
+        document.getElementById('songcurrent').innerText = isNaN(music.currentTime)? '': TimeConvert(music.currentTime);    
         playhead.style.marginLeft = playPercent + "px";
         if (music.currentTime == duration) {
             pButton.className = "";

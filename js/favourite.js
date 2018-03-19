@@ -21,7 +21,11 @@ $(function () {
         var string = reg.exec(href);
         return string ? string[1] : null;
     };
-    var deity = getQueryString("deity");
+    var deity = ""; 
+        if (getQueryString("deity")) {
+            deity = getQueryString("deity").split('+').join(' ');
+            $('#deity').val(deity).change();
+        }
 
     if (localStorage.getItem('Fav') != null) {
         var FavJson = JSON.parse(localStorage.getItem('Fav'));
