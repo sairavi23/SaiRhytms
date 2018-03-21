@@ -13,6 +13,12 @@
     <script src="js/tagdetail.js"> </script>
     <script src="js/details.js"> </script>
     <script type="text/javascript" src="js/waitforimages.js"></script>
+    <style>
+        audio {
+            display: inline-block;
+            vertical-align: baseline;
+        }
+    </style>
     <script>
         $(function () {
             $("#headerhtml").load("_header.html", function () {
@@ -46,7 +52,7 @@
         <div data-role="main" class="ui-content" id="result"> </div>
         <div id="audioall" style="text-align:center; padding-left:10px;">
             <div id="audiotag">
-                <audio id="audioPlayer" style="width:230px;height:50px" controls="true" preload="auto"></audio>
+                <audio id="audioPlayer" width="300" height="40" controls preload="auto"></audio>
             </div>
             <div id="soundplayer" height="50px"> </div>
             <div id="noaudio" class="alert alert-warning" role="alert" style="display:none;"> </div>
