@@ -36,6 +36,9 @@
                 var height = $('#list-header-menu').position();
                 var outer = $('#list-header-menu').outerHeight(true);
                 $('#detailheader').css('padding-top', height.top + outer + 10);
+                var audioWidth = Math.round($(window).width()*.90);
+                $('.audioDetailPlayer').css('width',audioWidth);
+                $('.audioDetailPlayer').css('max-width','500px');
             }
         });
     </script>
@@ -44,21 +47,20 @@
 <body>
     <div id="headerhtml"></div>
     <div id="detailheader">
-        <span id="favourite">
-            <span class="glyphicon glyphicon-star-empty" id="makefav"></span>
-        </span>
     </div>
     <div id="detailhtml" class="page-body" style="margin-top:-10px;margin-bottom: -10px;">
-        <div data-role="main" class="ui-content" id="result"> </div>
-        <div id="audioall" style="text-align:center; padding-left:10px;">
+        <div data-role="main" class="ui-content" id="result1"> </div>
+        <div id="audioall" style="text-align:center; padding-left:10px;padding-right:10px;">
             <div id="audiotag">
-                <audio id="audioPlayer" width="300" height="40" controls preload="auto"></audio>
+                <span class="songlabel" style="float:left;">Audio <span class="glyphicon glyphicon-volume-up" style="color:green;" ></span></span>
+                <audio id="audioPlayer" class="audioDetailPlayer" controls preload="auto"></audio>
             </div>
             <div id="soundplayer" height="50px"> </div>
             <div id="noaudio" class="alert alert-warning" role="alert" style="display:none;"> </div>
             <div id="nointernet" class="alert alert-warning" role="alert" style="display:none;"> </div>
             <div id="audioissue" class="alert alert-warning" role="alert" style="display:none;"></div>
         </div>
+        <div data-role="main" class="ui-content" id="result2"> </div>
         <div style="padding:10px;">
             <form class="form-horizontal" role="form">
                 <label style="font-weight:bold; color:#0088cc"> Notes for your reference: </label>
@@ -69,6 +71,7 @@
                 <textarea rows="4" style="height: 150px;margin-top:5px;" class="form-control" id="comment" placeholder="Sairam, Enter your scale or any other comments related to this song"></textarea>
             </form>
         </div>
+        <div data-role="main" class="ui-content" id="karoke"> </div>
     </div>
     <div id="tagdetailhtml" style="padding-bottom:60px;"></div>
     <div id="footerhtml"></div>
@@ -76,3 +79,26 @@
 </body>
 
 </html>
+
+<script>
+    var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player( 'player', {
+          events: { 'onStateChange': onPlayerStateChange }
+        });
+      }
+      function onPlayerStateChange(event) {
+        switch(event.data) {
+          case 0:
+            record('video ended');
+            break;
+          case 1:
+            record('video playing from '+player.getCurrentTime());
+            break;
+          case 2:
+            record('video paused at '+player.getCurrentTime());
+        }
+      }
+</script>
+<script type="text/javascript" src="js/managefavorite.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>

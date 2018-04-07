@@ -34,6 +34,9 @@
                 var height = $('#list-header-menu').position();
                 var outer = $('#list-header-menu').outerHeight(true);
                 $('#glossarysearch').css('padding-top', height.top + outer + 10);
+                var audioWidth = Math.round($(window).width()*.80);
+                $('.audioListPlayer').css('width',audioWidth);
+                $('.audioListPlayer').css('max-width','500px');
             }
         });
     </script>
@@ -57,7 +60,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <input id="glossaryterm" style="margin-left:10px;" type="text" name="term">
+                        <input id="glossaryterm" style="padding-left: 15px;padding-right:15px;" type="text" name="term">
                         <button type="submit" class="btn btn-info" style="height:35px;">
                             <span class="glyphicon glyphicon-search"/>
                         </button>
@@ -73,7 +76,7 @@
         <span class="page-title" style="padding-left:15px;" >Songs with Glossary:</span>
         <section>
             <div class="data-container"></div>
-            <div style="padding-left:15px;" id="pagination-demo2"></div>
+            <div class="pagination-demo2"></div>
         </section>
     </div>
     <div id="footerhtml"></div>
@@ -81,43 +84,4 @@
 
 </html>
 
-<script>
-    $(function () {
-        $(document).on('click', '.FavButton', function () {
-            $(this).html('Added to Favorites');
-            $(this).css('background','white');
-            $(this).css('border','white');
-            $(this).css('color','darkgreen');
-            $(this).css('font-size','medium');
-            $(this).prop("disabled", true);
-            $("#FavLink").css("color", "darkgreen");
-            setTimeout(function () {
-                $("#FavLink").css("color", "#234b8c");
-            }, 3000);
-
-        });
-    });
-
-    function saveComment(id, title, deity) {
-
-        if (localStorage.getItem('Fav') === null) {
-            var favi = [{ Id: id, Label: title, Deity: deity, Comment: "" }];
-            localStorage.setItem('Fav', JSON.stringify(favi));
-        }
-        else {
-            var newBhajan = 0;
-            var FavJson = JSON.parse(localStorage.getItem('Fav'));
-
-            for (var i in FavJson) {
-                if (FavJson[i].Id == id) {
-                    newBhajan = 1
-                }
-            }
-            if (newBhajan != 1) {
-                newBhajanData = { Id: id, Label: title, Deity: deity, Comment: "" }
-                FavJson.push(newBhajanData);
-                localStorage.setItem('Fav', JSON.stringify(FavJson));
-            }
-        }
-    }
-</script>
+<script type="text/javascript" src="js/managefavorite.js"></script>

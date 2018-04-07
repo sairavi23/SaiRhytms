@@ -98,7 +98,7 @@ body {
     font-size: 20px;
 }
 
-#detailhtml #result{
+#detailhtml #result1, #result2{
     padding:10px;
 }
 
@@ -152,12 +152,21 @@ body {
     color: #234b8c;
 }
 
+#songlist  .glyphicon-star{
+    padding-right: 10px;
+    float: right;
+    font-size: x-large;
+    color: #234b8c
+}
+
 #songlist  .glyphicon-star-empty{
     padding-right: 10px;
     float: right;
     font-size: x-large;
     color: #234b8c
 }
+
+
 
 #favourite .btn-danger {
     display: inline-block;
@@ -389,3 +398,18 @@ body {
     text-align: center !important;
 }
 
+#youTubeVideo iframe {
+    width: 100%;
+display: block;
+margin: 0px auto
+}
+
+#result2 td {
+    padding-right: 10px;
+}
+
+#karoke .alert {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    }

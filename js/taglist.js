@@ -48,7 +48,7 @@ $(function () {
                             var link = "tagsearch.html?term=" + pageresult.term;   
                             listHTML += '<li class="list-group-item">';
                             listHTML += '<div><a href=' + link + ' style="color:#0088cc" >'+ pageresult.term +'</a></div>';
-                            listHTML += '<div>' + pageresult.description + '</div></li>';    
+                            listHTML += '<div>' + decodeHtml(pageresult.description) + '</div></li>';    
                         });
                         listHTML += '</ul>';
                         container.prev().html(listHTML);
@@ -89,6 +89,12 @@ $(function () {
         }
         return checkExist;
     }  
+
+    function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
     
     loadSaibhajan();
    

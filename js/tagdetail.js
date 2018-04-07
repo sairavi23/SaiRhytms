@@ -21,7 +21,8 @@ function TagforDetailsPage(tags) {
                             var link = "tagsearch.html?term=" + result[i].term;
                             listHTML += '<li class="list-group-item">';
                             listHTML += '<div><a href=' + link + ' style="color:#0088cc" >' + result[i].term + '</a></div>';
-                            listHTML += '<div>' + result[i].description + '</div></li>';
+                            var description = decodeHtml(result[i].description);                            
+                            listHTML += '<div>' + description+ '</div></li>';
                         }
                     });
                 }
@@ -36,4 +37,11 @@ function TagforDetailsPage(tags) {
         },
         error: function (data) { alert("testingfailed"); }
     });
+}
+
+
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
 }

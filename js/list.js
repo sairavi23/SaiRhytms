@@ -119,17 +119,22 @@ $(function () {
                     else {
                         result = result.filter(function (item) {
                             var languageJson = item.language.replace(/(\r\n|\n|\r)/gm, "").toLowerCase();
-                            if(languageJson.includes("english") == false
+                            if (languageJson.includes("english") == false
                                 && languageJson.includes("hindi") == false
-                                && languageJson.includes("tamil") == false  
-                                && languageJson.includes("telugu") == false 
-                                && languageJson.includes("spanish") == false)
-                                {
-                                    return item;
-                                }
+                                && languageJson.includes("tamil") == false
+                                && languageJson.includes("telugu") == false
+                                && languageJson.includes("spanish") == false) {
+                                return item;
+                            }
                         });
                     }
                 }
+
+                result = result.filter(function (item) {
+                    if (item.song_id !="") {
+                        return item;
+                    }
+                });
 
                 var length = result.length;
 
@@ -147,30 +152,33 @@ $(function () {
                 container.pagination({
                     dataSource: result,
                     totalNumber: 120,
-                    pageSize: 20,
+                    pageSize: 10,
                     ajax: {
                         beforeSend: function () {
-                            container.prev().html('Loading bhajans');
+                            container.prev().html('Loading Devotional Songs');
                         }
                     },
                     callback: function (response, pagination) {
 
                         var listHTML = '<br> <ul id="songlist" data-role="listview" class="list-group" style="padding-left:15px; padding-right:15px;">';
                         listHTML += '<span class="page-title">Search Results:</span>';
+                        var audioWidth = Math.round($(window).width()*.80);
                         $.each(response, function (index, pageresult) {
                             var link = "details.html?id=" + pageresult.song_id;
                             var isFav = checkFavoriteExist(pageresult.song_id);
-                            var isAudio;
-                            if (pageresult.audio_link != "")
-                                isAudio = 'Y';
-                            else
-                                isAudio = '';
-                            var songname = lyricsformat(pageresult.lyrics, isAudio);
+                            var songname = lyricsformat(pageresult.lyrics);
                             listHTML += '<li class="list-group-item" >';
                             if (isFav == "N") {
-                                listHTML += '<span class="glyphicon glyphicon-star-empty FavButton" href=# style="float:right;" onclick="return saveComment(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')"></span>';
+                                listHTML += '<span class="glyphicon glyphicon-star-empty FavButton" href=# style="float:right;"  onclick="return saveComment(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')"></span>';
+                            } else {
+                                listHTML += '<span class="glyphicon glyphicon-star UnFavButton" href=# style="float:right;" onclick="return unfav(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')"></span>';
                             }
-                            listHTML += '<div><a href=' + link + ' style="color:#0088cc" value=' + pageresult.song_id + '>' + songname + '</li>';
+                            listHTML += '<div><a href=' + link + ' style="color:#0088cc" value=' + pageresult.song_id + '>' + songname;
+                            var isAudio;
+                            if (pageresult.audio_link != "" && !pageresult.audio_link.includes("soundcloud")) {
+                                listHTML += '<div><audio controls preload="auto" src=' + pageresult.audio_link + ' type="audio/mpeg" class="audioListPlayer" style="width:'+audioWidth+'px;max-width:500px;" ></audio></div>'
+                            }
+                            listHTML +='</li>'
                         });
                         listHTML += '</ul>';
                         container.prev().html(listHTML);
@@ -182,13 +190,8 @@ $(function () {
         });
     }
 
-    function lyricsformat(lyrics, isAudio) {
-        if (isAudio != "")
-            isAudio = '<span class="glyphicon glyphicon-play-circle" />';
-        else
-            isAudio = '';
-
-        var formattedresult = lyrics.replace("\n", isAudio + "</a></div>");
+    function lyricsformat(lyrics) {
+        var formattedresult = lyrics.replace("\n", "</a></div>");
         formattedresult = formattedresult.replace(/(\r\n|\n|\r)/gm, "<br>");
         return formattedresult;
     }
@@ -272,14 +275,13 @@ $(function () {
         var setId = 0;
         searchquery = "list.html" + searchquery;
         if (localStorage.getItem('RecentSearch') === null) {
-            var recent = [{Id:1, Name: name, Link: searchquery, Lyrics: lyrics, Deity: deity, DateSearched: new Date }];
+            var recent = [{ Id: 1, Name: name, Link: searchquery, Lyrics: lyrics, Deity: deity, DateSearched: new Date }];
             localStorage.setItem('RecentSearch', JSON.stringify(recent));
         }
         else {
             var recentJson = JSON.parse(localStorage.getItem('RecentSearch'));
-            for (var i in recentJson){
-                if(setId < recentJson[i].Id)
-                {
+            for (var i in recentJson) {
+                if (setId < recentJson[i].Id) {
                     setId = recentJson[i].Id
                 }
             }
@@ -291,7 +293,7 @@ $(function () {
                 }
             }
             if (existingsearch != 1) {
-                newrecent = {Id:setId, Name: name, Link: searchquery, Lyrics: lyrics, Deity: deity };
+                newrecent = { Id: setId, Name: name, Link: searchquery, Lyrics: lyrics, Deity: deity };
                 recentJson.push(newrecent);
                 localStorage.setItem('RecentSearch', JSON.stringify(recentJson))
             }
