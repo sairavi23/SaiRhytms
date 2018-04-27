@@ -128,9 +128,10 @@ $(function () {
                             listHTML += '<div style="padding:8px;margin-bottom:2rem"><div class="songdetail meaning">' + meaning + '</div></div>'
                         }
                         if (data[i].golden_voice != "" && navigator.onLine) {
+                            var audioWidth = Math.round($(window).width()*.90);
                             listHTML += '<div style="padding:8px;text-align: center;">'
                             listHTML += '<span class="songlabel" style="float:left;">Golden Voice <span class="glyphicon glyphicon-volume-up" style="color:#daa520;" ></span></span>';
-                            listHTML += '<audio class="audioDetailPlayer" controls preload="auto" src="' + data[i].golden_voice + '"></audio>';
+                            listHTML += '<audio class="audioDetailPlayer" controls preload="auto" src="' + data[i].golden_voice + '" style="width:'+audioWidth+'px;max-width:500px;"></audio>';
                             listHTML += '</div>'
                         }
                         node1.html(listHTML);

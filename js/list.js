@@ -173,7 +173,7 @@ $(function () {
                             } else {
                                 listHTML += '<span class="glyphicon glyphicon-star UnFavButton" href=# style="float:right;" onclick="return unfav(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')"></span>';
                             }
-                            listHTML += '<div><a href=' + link + ' style="color:#0088cc" value=' + pageresult.song_id + '>' + songname;
+                            listHTML += '<div><a href=' + link + ' style="color:#0088cc;font-weight:bold;" value=' + pageresult.song_id + '>' + songname;
                             var isAudio;
                             if (pageresult.audio_link != "" && !pageresult.audio_link.includes("soundcloud")) {
                                 listHTML += '<div><audio controls preload="auto" src=' + pageresult.audio_link + ' type="audio/mpeg" class="audioListPlayer" style="width:'+audioWidth+'px;max-width:500px;" ></audio></div>'
