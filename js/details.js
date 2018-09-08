@@ -127,7 +127,7 @@ $(function () {
                         if (meaning != "") {
                             listHTML += '<div style="padding:8px;margin-bottom:2rem"><div class="songdetail meaning">' + meaning + '</div></div>'
                         }
-                        if (data[i].golden_voice != "" && navigator.onLine) {
+                        if (data[i].golden_voice != "" ) {
                             var audioWidth = Math.round($(window).width()*.90);
                             listHTML += '<div style="padding:8px;text-align: center;">'
                             listHTML += '<span class="songlabel" style="float:left;">Golden Voice <span class="glyphicon glyphicon-volume-up" style="color:#daa520;" ></span></span>';
@@ -177,62 +177,48 @@ $(function () {
     }
 
     function setAudioControl(musiclink) {
-        if (navigator.onLine) {
-            if (musiclink.includes("soundcloud")) {
-                //musiclink = musiclink.concat("?enablejsapi=1");
-                LoadSound(musiclink);
-                document.getElementById('audiotag').style.display = "none";
-                document.getElementById('noaudio').style.display = "none";
-                document.getElementById('nointernet').style.display = "none";
-            }
-            else if (isEmptyOrSpaces(musiclink)) {
-                document.getElementById('audiotag').style.display = "none";
-                document.getElementById('soundplayer').style.display = "none";
-                document.getElementById('nointernet').style.display = "none";
-                document.getElementById('noaudio').innerHTML = "No Audio available. If you have the Audio for this Bhajan, <a href='https://sairegion3.org/contact-us/'>Contact Us</a>";
-                document.getElementById('noaudio').style.display = "";
-            }
-            else if (!musiclink.includes("soundcloud")) {
-                document.getElementById('audioPlayer').src = musiclink;
-                document.getElementById('audioPlayer').type = "audio/mpeg";
-                document.getElementById('audioPlayer').load();
-                document.getElementById('soundplayer').style.display = "none";
-                document.getElementById('noaudio').style.display = "none";
-                document.getElementById('nointernet').style.display = "none";
-            }
-
+        if (musiclink.includes("soundcloud")) {
+            LoadSound(musiclink);
+            document.getElementById('audiotag').style.display = "none";
+            document.getElementById('noaudio').style.display = "none";
+            document.getElementById('nointernet').style.display = "none";
         }
-        else if (!navigator.onLine) {
+        else if (isEmptyOrSpaces(musiclink)) {
             document.getElementById('audiotag').style.display = "none";
             document.getElementById('soundplayer').style.display = "none";
+            document.getElementById('nointernet').style.display = "none";
+            document.getElementById('noaudio').innerHTML = "No Audio available. If you have the Audio for this Bhajan, <a href='https://sairegion3.org/contact-us/'>Contact Us</a>";
+            document.getElementById('noaudio').style.display = "";
+        }
+        else if (!musiclink.includes("soundcloud")&& navigator.onLine) {
+            document.getElementById('audioPlayer').src = musiclink;
+            document.getElementById('audioPlayer').type = "audio/mpeg";
+            document.getElementById('audioPlayer').load();
+            document.getElementById('soundplayer').style.display = "none";
             document.getElementById('noaudio').style.display = "none";
-            document.getElementById('nointernet').innerHTML = "No Internet Connection. Unable to load Audio";
+            document.getElementById('nointernet').style.display = "none";
+        }
+        else 
+        {
+            document.getElementById('soundplayer').style.display = "none";
+            document.getElementById('noaudio').style.display = "none";
+            document.getElementById('nointernet').style.display = "none";
         }
     }
 
     function LoadSound(url) {
 
         var SOUNDCLOUD_URL = url //'http://soundcloud.com/georgconrad/shostakovich2', 
-        // You can also specify widget options in your request
         WIDGET_OPTIONS = '&color=3C9FCE&liking=false&height=50';
 
         jQuery
             .getJSON('http://soundcloud.com/oembed.json?url=' + SOUNDCLOUD_URL + WIDGET_OPTIONS)
             .done(function (data) {
                 var widget;
-                // data.html will contain widget HTML that you can embed
                 $("#soundplayer").html(data.html);
-
-                // For the following code to work, you need to have Widget HTML5 API 
-                // available by the time this code is invoked. The code to put API file
-                // in your page is:
-                //
-                // Create API enabled reference to the widget (note that we are passing DOM object)
                 widget = SC.Widget($("#soundplayer")); //find('iframe')[1]);
-                // Interact with widget via API
             })
-            .fail(function () { $("#soundplayer").html('<div class="alert alert-warning" role="alert"> Unable to load Audio </div>'); });
-
+            .fail(function () { $("#soundplayer").html('<div class="alert alert-warning" role="alert"> Unable to load <a href="'+url+'"> SoundCloud Audio</a></div>'); });
     };
 
     function lyricsformat(lyrics) {

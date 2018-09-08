@@ -24,9 +24,9 @@ $(function () {
                 }
                 else {
                     result.sort(function (a, b) {
-                        if (a.term < b.term)
+                        if (a.term.toLowerCase() < b.term.toLowerCase())
                             return -1;
-                        if (a.term > b.term)
+                        if (a.term.toLowerCase() > b.term.toLowerCase())
                             return 1;
                         return 0;
                     });

@@ -1,17 +1,18 @@
-<div class="btn btn-link" id="showhideRecentSearch">Recent Searches</div>
+<div class="btn btn-link" id="showhideRecentSearch">Recent Searches <span class="glyphicon glyphicon-plus" style="color:green"/></div>
 <div id="RecentSearch"></div>
 
 <script>
     $(function () {
 
         $("#showhideRecentSearch").click(function () {
-            if ($("#showhideRecentSearch").html().toUpperCase() == "RECENT SEARCHES") {
-                $("#showhideRecentSearch").html('<span style="color:red">Close Recent Searches <span class="glyphicon glyphicon-minus" /></span>');
-                $("#RecentSearch").html(BuildRecentSearchHtml());
+            if ($("#showhideRecentSearch").html().toUpperCase().includes("MINUS"))
+            {
+                $("#showhideRecentSearch").html('Recent Searches <span class="glyphicon glyphicon-plus" style="color:green"/>');
+                $("#RecentSearch").html("");
             }
             else {
-                $("#showhideRecentSearch").html("Recent Searches");
-                $("#RecentSearch").html("");
+                $("#showhideRecentSearch").html('Recent Searches <span class="glyphicon glyphicon-minus" style="color:red" /> ');
+                $("#RecentSearch").html(BuildRecentSearchHtml());
             }
         });
 
@@ -49,7 +50,7 @@
                         break;
                     }
                 }
-                $("#showhideRecentSearch").html('<span style="color:red">Close Recent Searches <span class="glyphicon glyphicon-minus" /></span>');
+                $("#showhideRecentSearch").html('Recent Searches <span class="glyphicon glyphicon-minus" style="color:green"/>');
                 $("#RecentSearch").html(BuildRecentSearchHtml());
             }
         });

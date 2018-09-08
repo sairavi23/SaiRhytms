@@ -1,14 +1,18 @@
 $(function () {
     $("#Search").css("color", "#0088cc");
-    function pagenext(page) {
-        var currenturl = window.location.href;
-        var lastequal = currenturl.lastIndexOf("page=");
-        var newpage = parseInt(page) + 1;
-        var res = currenturl.substring(0, lastequal + 5) + newpage;
-        return res;
-    };
 
-    function loadSaibhajan() {
+    loadSaiBhajanOnPageLoad();
+    RecentSearchOnPageLoad();
+
+    $("#search").click(function () {
+        $('#filtertable').hide();
+        $('#filter').html("Filter +");
+        loadSaiBhajanOnClick();
+        RecentSearchOnClick();
+        $("#recentsearchhtml").load("_recentsearch.html");
+    });
+
+    function loadSaiBhajanOnPageLoad() {
         var getQueryString = function (field, url) {
             var href = url ? url : window.location.href;
             var reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
@@ -19,11 +23,10 @@ $(function () {
         if (getQueryString("lyrics")) {
             lyrics = getQueryString("lyrics").split('+').join(' ');
         }
-        var deity = ""; //getQueryString("deity");
+        var deity = "";
         if (getQueryString("deity")) {
             deity = getQueryString("deity").split('+').join(' ');
             $('#deity').val(deity).change();
-            //$('#deity  option[value="val2"]').prop("selected", true);
         }
         var complexity = getQueryString("complexity");
         var tempo = getQueryString("tempo");
@@ -33,8 +36,40 @@ $(function () {
         var language = getQueryString("language");
         var page = getQueryString("page");
         var aud = "";
+        loadSaibhajanList(lyrics, deity, complexity, tempo, raga, media, beat, language)
+    }
+    function loadSaiBhajanOnClick() {
 
-        var pagenexturl = pagenext(page)
+        var lyrics = "";
+        if ($("#lyrics")) {
+            lyrics = $("#lyrics").val().split('+').join(' ');
+        }
+        var deity = "";
+        if ($("#deity")) {
+            deity = $("#deity").val().split('+').join(' ');
+        }
+        var complexity = $("#complexity").val();
+        var tempo = $("#tempo").val();
+        var raga = $("#raga").val();
+        var media = $("#media").val();
+        var beat = $("#beat").val();
+        var language = $("#language").val();
+        var aud = "";
+        loadSaibhajanList(lyrics, deity, complexity, tempo, raga, media, beat, language);
+        if (deity || tempo || complexity || raga || media || beat || language) {
+            $('#filter').css("background-color", "#cc8b00");
+            $('#filter').css("border-color", "#cc8b00");
+            $('#filter').css("color", "white");
+        }
+        else {
+            $('#filter').css("background-color", "white");
+            $('#filter').css("border-color", "darkgrey");
+            $('#filter').css("color", "#242121");
+        }
+    }
+
+
+    function loadSaibhajanList(lyrics, deity, complexity, tempo, raga, media, beat, language) {
 
         var fuse, Obj, result, newresult, newobj, tosearch;
         var data = $.ajax({
@@ -131,60 +166,64 @@ $(function () {
                 }
 
                 result = result.filter(function (item) {
-                    if (item.song_id !="") {
+                    if (item.song_id != "") {
                         return item;
                     }
                 });
 
                 var length = result.length;
 
-                if (lyrics == "") {
-                    result.sort(function (a, b) {
-                        if (a.title < b.title)
-                            return -1;
-                        if (a.title > b.title)
-                            return 1;
-                        return 0;
-                    });
-                }
-
-                var container = $('.pagination-demo2');
-                container.pagination({
-                    dataSource: result,
-                    totalNumber: 120,
-                    pageSize: 10,
-                    ajax: {
-                        beforeSend: function () {
-                            container.prev().html('Loading Devotional Songs');
-                        }
-                    },
-                    callback: function (response, pagination) {
-
-                        var listHTML = '<br> <ul id="songlist" data-role="listview" class="list-group" style="padding-left:15px; padding-right:15px;">';
-                        listHTML += '<span class="page-title">Search Results:</span>';
-                        var audioWidth = Math.round($(window).width()*.80);
-                        $.each(response, function (index, pageresult) {
-                            var link = "details.html?id=" + pageresult.song_id;
-                            var isFav = checkFavoriteExist(pageresult.song_id);
-                            var songname = lyricsformat(pageresult.lyrics);
-                            listHTML += '<li class="list-group-item" >';
-                            if (isFav == "N") {
-                                listHTML += '<span class="glyphicon glyphicon-star-empty FavButton" href=# style="float:right;"  onclick="return saveComment(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')"></span>';
-                            } else {
-                                listHTML += '<span class="glyphicon glyphicon-star UnFavButton" href=# style="float:right;" onclick="return unfav(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')"></span>';
-                            }
-                            listHTML += '<div><a href=' + link + ' style="color:#0088cc;font-weight:bold;" value=' + pageresult.song_id + '>' + songname;
-                            var isAudio;
-                            if (pageresult.audio_link != "" && !pageresult.audio_link.includes("soundcloud")) {
-                                listHTML += '<div><audio controls preload="auto" src=' + pageresult.audio_link + ' type="audio/mpeg" class="audioListPlayer" style="width:'+audioWidth+'px;max-width:500px;" ></audio></div>'
-                            }
-                            listHTML +='</li>'
+                if (length > 0) {
+                    if (lyrics == "") {
+                        result.sort(function (a, b) {
+                            if (a.title < b.title)
+                                return -1;
+                            if (a.title > b.title)
+                                return 1;
+                            return 0;
                         });
-                        listHTML += '</ul>';
-                        container.prev().html(listHTML);
                     }
-                })
 
+                    var container = $('.pagination-demo2');
+                    container.pagination({
+                        dataSource: result,
+                        totalNumber: 120,
+                        pageSize: 10,
+                        ajax: {
+                            beforeSend: function () {
+                                container.prev().html('Loading Devotional Songs');
+                            }
+                        },
+                        callback: function (response, pagination) {
+                            var listHTML = '<br> <ul id="songlist" data-role="listview" class="list-group" style="padding-left:15px; padding-right:15px;">';
+                            //listHTML += '<span class="page-title">Search Results:</span>';
+                            var audioWidth = Math.round($(window).width() * .80);
+                            $.each(response, function (index, pageresult) {
+                                var link = "details.html?id=" + pageresult.song_id;
+                                var isFav = checkFavoriteExist(pageresult.song_id);
+                                var songname = lyricsformat(pageresult.lyrics);
+                                listHTML += '<li class="list-group-item" >';
+                                if (isFav == "N") {
+                                    listHTML += '<span class="glyphicon glyphicon-star-empty FavButton" href=# style="float:right;"  onclick="return saveComment(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')"></span>';
+                                } else {
+                                    listHTML += '<span class="glyphicon glyphicon-star UnFavButton" href=# style="float:right;" onclick="return unfav(\'' + pageresult.song_id + '\',\'' + pageresult.title + '\',\'' + pageresult.deity + '\')"></span>';
+                                }
+                                listHTML += '<div><a href=' + link + ' style="color:#0088cc;font-weight:bold;" value=' + pageresult.song_id + '>' + songname;
+                                var isAudio;
+                                if (pageresult.audio_link != "" && !pageresult.audio_link.includes("soundcloud")) {
+                                    listHTML += '<div><audio controls preload="auto" src=' + pageresult.audio_link + ' type="audio/mpeg" class="audioListPlayer" style="width:' + audioWidth + 'px;max-width:500px;" ></audio></div>'
+                                }
+                                listHTML += '</li>'
+                            });
+                            listHTML += '</ul>';
+                            container.prev().html(listHTML);
+                        }
+                    })
+                }
+                else {
+                    $('.data-container').html('<br/><div style="color:#0088cc;font-weight:bold;padding-left:15px;"> No matching songs found</div>');
+                    $('.pagination-demo2').html('');
+                }
             },
             error: function (data) { alert("testingfailed"); }
         });
@@ -214,11 +253,8 @@ $(function () {
         return checkExist;
     }
 
-    loadSaibhajan();
-    RecentSearch();
-
     // Recent Search Save Result
-    function RecentSearch() {
+    function RecentSearchOnPageLoad() {
 
         var getQueryString = function (field, url) {
             var href = url ? url : window.location.href;
@@ -245,6 +281,29 @@ $(function () {
 
     };
 
+    function RecentSearchOnClick() {
+
+        var lyrics = "";
+        if ($("#lyrics")) {
+            lyrics = $("#lyrics").val().split('+').join(' ');
+        }
+        var deity = "";
+        if ($("#deity")) {
+            deity = $("#deity").val().split('+').join(' ');
+        }
+        var complexity = $("#complexity").val();
+        var tempo = $("#tempo").val();
+        var raga = $("#raga").val();
+        var media = $("#media").val();
+        var beat = $("#beat").val();
+        var language = $("#language").val();
+        var link = 'lyrics='+lyrics+'&deity='+deity+'&complexity='+complexity+'&tempo='+tempo+'&raga='+raga+'&media='+media+'&beat='+beat+'&language='+language+'&page=1';
+        var searchname = GetNamefromQueryString(lyrics, deity, complexity, tempo, raga, media, beat, language);
+        if (searchname != "") {
+            SaveRecentSearch(link, searchname, lyrics, deity);
+        }
+        mostRecentSearch("list.html?"+link);
+    };
 
     function GetNamefromQueryString(lyrics, deity, complexity, tempo, raga, media, beat, language) {
         var formattedName = "";
@@ -273,7 +332,7 @@ $(function () {
         var existingsearch = 0;
         var name = formattedname;
         var setId = 0;
-        searchquery = "list.html" + searchquery;
+        searchquery = "list.html?" + searchquery;
         if (localStorage.getItem('RecentSearch') === null) {
             var recent = [{ Id: 1, Name: name, Link: searchquery, Lyrics: lyrics, Deity: deity, DateSearched: new Date }];
             localStorage.setItem('RecentSearch', JSON.stringify(recent));
@@ -328,13 +387,12 @@ $(function () {
         }
     }
 
-    function compare(a, b) {
-        if (new Date(a.source) < new Date(b.source))
-            return -1;
-        if (new Date(a.source) > new Date(b.source))
-            return 1;
-        return 0;
-    }
+   function mostRecentSearch(link)
+   {
+    //var recent = [{ Id: 1, Link: link }];
+    //localStorage.setItem('MostRecentSearch', JSON.stringify(recent));
+    history.pushState({id: 'id'}, '', link);
+   }
 
 });
 

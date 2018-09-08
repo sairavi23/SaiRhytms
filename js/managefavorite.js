@@ -13,8 +13,11 @@
             onclickEvent = onclickEvent.replace("saveComment","unfav");
             $(this).attr("onclick",onclickEvent);
             $("#FavLink").css("color", "darkgreen");
+            $("#modalMessage").html('Favorite has been added <span class="glyphicon glyphicon-ok-sign" style="color:green"/>');
+            $('#favModal').modal('show');
             setTimeout(function () {
                 $("#FavLink").css("color", "#234b8c");
+                $('#favModal').modal('hide');
             }, 3000);
         });
 
@@ -29,8 +32,11 @@
             var onclickEvent =  $(this).attr("onclick");
             onclickEvent = onclickEvent.replace("unfav","saveComment");
             $("#FavLink").css("color", "darkgrey");
+            $("#modalMessage").html('Favorite has been removed <span class="glyphicon glyphicon-ok-sign" style="color:red"/>');
+            $('#favModal').modal('show');
             setTimeout(function () {
                 $("#FavLink").css("color", "#234b8c");
+                $('#favModal').modal('hide');
             }, 3000);
         });
     });
